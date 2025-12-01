@@ -6,12 +6,10 @@ import React, { useState, useEffect } from 'react';
 import { FaSearch, FaTicketAlt, FaFilter, FaClock, FaCheckCircle, FaUser, FaPaperPlane } from 'react-icons/fa';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import supportApi, {
-  Ticket,
-  Admin,
+  type Ticket,
+  type Admin,
   getStatusColor,
-  getStatusLabel,
   getPriorityColor,
-  getPriorityLabel,
   getCategoryIcon,
   getCategoryLabel
 } from '../../services/supportApi';
