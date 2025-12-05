@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/Layout/AdminLayout';
-import settingsApi, { type SystemSetting, type GroupedSettings, type BulkUpdateSetting } from '../../services/settingsApi';
+import settingsApi, { SystemSetting, GroupedSettings, BulkUpdateSetting } from '../../services/settingsApi';
 import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaEnvelope, FaChartLine, FaDollarSign } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 import CurrencySettings from './CurrencySettings';
@@ -73,7 +73,7 @@ const SettingsPage: React.FC = () => {
 
   const handleSaveAll = async () => {
     if (pendingChanges.length === 0) {
-      toast('Aucune modification à sauvegarder');
+      toast.info('Aucune modification à sauvegarder');
       return;
     }
 

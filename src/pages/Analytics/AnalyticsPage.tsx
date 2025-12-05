@@ -263,7 +263,7 @@ const AnalyticsPage: React.FC = () => {
                     cx="50%"
                     cy="50%"
                     outerRadius={100}
-                    label={({ status, count }: any) => `${STATUS_LABELS[status as keyof typeof STATUS_LABELS] || status}: ${count}`}
+                    label={({ status, count }) => `${STATUS_LABELS[status] || status}: ${count}`}
                   >
                     {bookingsByStatus.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={STATUS_COLORS[entry.status] || '#888'} />

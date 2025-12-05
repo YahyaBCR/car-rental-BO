@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaUsers, FaCar, FaCalendarCheck, FaDollarSign } from 'react-icons/fa';
 import AdminLayout from '../../components/Layout/AdminLayout';
-import dashboardApi, { type DashboardStats, type RecentActivity, type TopCar } from '../../services/dashboardApi';
+import dashboardApi, { DashboardStats, RecentActivity, TopCar } from '../../services/dashboardApi';
 import { FlitCarColors, BOOKING_STATUS_LABELS } from '../../utils/constants';
 import { formatCurrency, formatRelativeTime } from '../../utils/formatters';
 import toast from 'react-hot-toast';
