@@ -18,6 +18,7 @@ import BookingsListPage from './pages/Bookings/BookingsListPage';
 import BookingDetailsPage from './pages/Bookings/BookingDetailsPage';
 import FinancialPage from './pages/Financial/FinancialPage';
 import AirportsPage from './pages/Airports/AirportsPage';
+import CitiesPage from './pages/Cities/CitiesPage';
 import ReviewsPage from './pages/Reviews/ReviewsPage';
 import SettingsPage from './pages/Settings/SettingsPage';
 import AnalyticsPage from './pages/Analytics/AnalyticsPage';
@@ -60,6 +61,7 @@ function App() {
           <Route path="/reviews" element={<ProtectedRoute><ReviewsPage /></ProtectedRoute>} />
           <Route path="/messaging" element={<ProtectedRoute><PlaceholderPage title="Messagerie" description="Supervision des conversations" /></ProtectedRoute>} />
           <Route path="/airports" element={<ProtectedRoute><AirportsPage /></ProtectedRoute>} />
+          <Route path="/cities" element={<ProtectedRoute><CitiesPage /></ProtectedRoute>} />
           <Route path="/analytics" element={<ProtectedRoute><AnalyticsPage /></ProtectedRoute>} />
           <Route path="/support" element={<ProtectedRoute><SupportPage /></ProtectedRoute>} />
           <Route path="/logs" element={<ProtectedRoute><LogsPage /></ProtectedRoute>} />
