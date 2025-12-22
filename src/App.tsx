@@ -12,6 +12,7 @@ import UsersListPage from './pages/Users/UsersListPage';
 import UserDetailsPage from './pages/Users/UserDetailsPage';
 import AddOwnerPage from './pages/Users/AddOwnerPage';
 import OwnerAirportsPage from './pages/Users/OwnerAirportsPage';
+import OwnerCitiesPage from './pages/Users/OwnerCitiesPage';
 import CarsListPage from './pages/Cars/CarsListPage';
 import CarDetailsPage from './pages/Cars/CarDetailsPage';
 import BookingsListPage from './pages/Bookings/BookingsListPage';
@@ -52,6 +53,7 @@ function App() {
           <Route path="/users" element={<ProtectedRoute><UsersListPage /></ProtectedRoute>} />
           <Route path="/users/add-owner" element={<ProtectedRoute><AddOwnerPage /></ProtectedRoute>} />
           <Route path="/users/:userId/airports" element={<ProtectedRoute><OwnerAirportsPage /></ProtectedRoute>} />
+          <Route path="/users/:userId/cities" element={<ProtectedRoute><OwnerCitiesPage /></ProtectedRoute>} />
           <Route path="/users/:userId" element={<ProtectedRoute><UserDetailsPage /></ProtectedRoute>} />
           <Route path="/cars" element={<ProtectedRoute><CarsListPage /></ProtectedRoute>} />
           <Route path="/cars/:carId" element={<ProtectedRoute><CarDetailsPage /></ProtectedRoute>} />

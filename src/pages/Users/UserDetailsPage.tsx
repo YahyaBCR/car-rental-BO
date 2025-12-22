@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaEnvelope, FaPhone, FaCalendar, FaUser, FaCar, FaShoppingCart, FaPlane, FaBan, FaLock, FaUnlock } from 'react-icons/fa';
+import { FaArrowLeft, FaEnvelope, FaPhone, FaCalendar, FaUser, FaCar, FaShoppingCart, FaPlane, FaCity, FaBan, FaLock, FaUnlock } from 'react-icons/fa';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import usersApi from '../../services/usersApi';
 import { FlitCarColors } from '../../utils/constants';
@@ -203,6 +203,14 @@ const UserDetailsPage: React.FC = () => {
                 style={{ backgroundColor: FlitCarColors.primary }}
               >
                 <FaPlane /> Gérer les aéroports
+              </button>
+
+              <button
+                onClick={() => navigate(`/users/${user.id}/cities`)}
+                className="px-6 py-2 rounded-lg font-semibold text-white transition-colors flex items-center gap-2"
+                style={{ backgroundColor: FlitCarColors.primary }}
+              >
+                <FaCity /> Gérer les villes
               </button>
 
               {user.is_blocked ? (
