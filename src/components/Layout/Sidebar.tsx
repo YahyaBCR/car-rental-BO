@@ -14,7 +14,8 @@ import {
   FaChartLine,
   FaTicketAlt,
   FaFileAlt,
-  FaUserShield
+  FaUserShield,
+  FaUser
 } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 
@@ -41,6 +42,7 @@ const Sidebar: React.FC = () => {
     { name: 'Support', path: '/support', icon: <FaTicketAlt /> },
     { name: 'Logs', path: '/logs', icon: <FaFileAlt /> },
     { name: 'Administrateurs', path: '/admin-management', icon: <FaUserShield /> },
+    { name: 'Mon Compte', path: '/account', icon: <FaUser /> },
     { name: 'Paramètres', path: '/settings', icon: <FaCog /> },
   ];
 
