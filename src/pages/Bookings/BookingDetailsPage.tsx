@@ -101,9 +101,12 @@ const BookingDetailsPage: React.FC = () => {
   }
 
   const rentalDays = differenceInDays(new Date(booking.end_date), new Date(booking.start_date));
-  const commissionRate = 0.04; // 4% commission
-  const commission = booking.total_price * commissionRate;
-  const ownerPayout = booking.total_price - commission;
+
+  // Utiliser la commission depuis la base de données (déjà calculée)
+  const commission = booking.commission_amount || 0;
+  const ownerPayout = booking.owner_payment_amount || (booking.total_price - commission);
+  const commissionRate = booking.commission_rate || 0;
+  const commissionPercentage = (commissionRate * 100).toFixed(1);
 
   return (
     <AdminLayout>
@@ -210,11 +213,22 @@ const BookingDetailsPage: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-xs text-textSecondary">Lieu de prise en charge</p>
-                      <p className="text-sm font-medium text-textPrimary">{booking.pickup_location}</p>
-                      {booking.pickup_airport_name && (
-                        <p className="text-xs text-textSecondary mt-1">
-                          Aéroport: {booking.pickup_airport_name} ({booking.pickup_airport_code})
+                      {booking.pickup_airport_name ? (
+                        <>
+                          <p className="text-sm font-medium text-textPrimary">
+                            {booking.pickup_airport_name}
+                          </p>
+                          <p className="text-xs text-textSecondary mt-1">
+                            Code: {booking.pickup_airport_code}
+                          </p>
+                        </>
+                      ) : booking.pickup_city_name ? (
+                        <p className="text-sm font-medium text-textPrimary">
+                          {booking.pickup_city_name}
+                          {booking.pickup_city_region && ` (${booking.pickup_city_region})`}
                         </p>
+                      ) : (
+                        <p className="text-sm text-gray-400">Non spécifié</p>
                       )}
                     </div>
                   </div>
@@ -224,11 +238,22 @@ const BookingDetailsPage: React.FC = () => {
                     </div>
                     <div>
                       <p className="text-xs text-textSecondary">Lieu de retour</p>
-                      <p className="text-sm font-medium text-textPrimary">{booking.dropoff_location}</p>
-                      {booking.dropoff_airport_name && (
-                        <p className="text-xs text-textSecondary mt-1">
-                          Aéroport: {booking.dropoff_airport_name} ({booking.dropoff_airport_code})
+                      {booking.dropoff_airport_name ? (
+                        <>
+                          <p className="text-sm font-medium text-textPrimary">
+                            {booking.dropoff_airport_name}
+                          </p>
+                          <p className="text-xs text-textSecondary mt-1">
+                            Code: {booking.dropoff_airport_code}
+                          </p>
+                        </>
+                      ) : booking.dropoff_city_name ? (
+                        <p className="text-sm font-medium text-textPrimary">
+                          {booking.dropoff_city_name}
+                          {booking.dropoff_city_region && ` (${booking.dropoff_city_region})`}
                         </p>
+                      ) : (
+                        <p className="text-sm text-gray-400">Non spécifié</p>
                       )}
                     </div>
                   </div>
@@ -251,7 +276,7 @@ const BookingDetailsPage: React.FC = () => {
                     <p className="text-xl font-bold text-textPrimary">{formatCurrency(booking.total_price)}</p>
                   </div>
                   <div className="bg-green-50 p-4 rounded-lg">
-                    <p className="text-xs text-textSecondary mb-1">Commission (4%)</p>
+                    <p className="text-xs text-textSecondary mb-1">Commission ({commissionPercentage}%)</p>
                     <p className="text-xl font-bold" style={{ color: FlitCarColors.success }}>{formatCurrency(commission)}</p>
                   </div>
                   <div className="bg-purple-50 p-4 rounded-lg">

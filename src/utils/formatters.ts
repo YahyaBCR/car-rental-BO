@@ -5,9 +5,20 @@ export const formatCurrency = (amount: number): string => {
   return `${amount.toLocaleString('fr-FR')} DH`;
 };
 
-export const formatDate = (date: string | Date, formatStr: string = 'dd/MM/yyyy'): string => {
-  const dateObj = typeof date === 'string' ? parseISO(date) : date;
-  return format(dateObj, formatStr, { locale: fr });
+export const formatDate = (date: string | Date | null | undefined, formatStr: string = 'dd/MM/yyyy'): string => {
+  if (!date) return 'Non disponible';
+
+  try {
+    const dateObj = typeof date === 'string' ? parseISO(date) : date;
+    // Vérifier si la date est valide
+    if (isNaN(dateObj.getTime())) {
+      return 'Date invalide';
+    }
+    return format(dateObj, formatStr, { locale: fr });
+  } catch (error) {
+    console.error('Error formatting date:', date, error);
+    return 'Date invalide';
+  }
 };
 
 export const formatDateTime = (date: string | Date): string => {
