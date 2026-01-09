@@ -22,16 +22,19 @@ const FinancialPage: React.FC = () => {
       setLoading(true);
       if (activeTab === 'transactions') {
         const data = await financialApi.getTransactions({ page: 1, limit: 20 });
+        console.log('📊 [Financial] Transactions data:', data);
         setTransactions(data.data);
       } else if (activeTab === 'payouts') {
         const data = await financialApi.getPayouts();
+        console.log('📊 [Financial] Payouts data:', data);
         setPayouts(data);
       }
 
       const reportsData = await financialApi.getFinancialReports();
+      console.log('📊 [Financial] Reports data:', reportsData);
       setReports(reportsData);
     } catch (error) {
-      console.error('Error loading financial data:', error);
+      console.error('❌ [Financial] Error loading financial data:', error);
       toast.error('Erreur lors du chargement des données financières');
     } finally {
       setLoading(false);
