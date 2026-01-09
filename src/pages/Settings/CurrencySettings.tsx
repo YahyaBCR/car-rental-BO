@@ -52,11 +52,16 @@ const CurrencySettings: React.FC = () => {
   const loadCurrentRates = async () => {
     try {
       const response = await axios.get(`${API_URL}/currency/rates`);
-      setRates(response.data.rates);
-      setMargin(response.data.margin);
-      setUsdRate(response.data.rates.USD.toString());
-      setEurRate(response.data.rates.EUR.toString());
-      setNewMargin((response.data.margin * 100).toFixed(2)); // Convert to percentage
+      console.log('📊 [Currency] API Response:', response.data);
+
+      const ratesData = response.data.rates || {};
+      const marginData = response.data.margin || 0;
+
+      setRates(ratesData);
+      setMargin(marginData);
+      setUsdRate(ratesData.USD?.toString() || '10.5');
+      setEurRate(ratesData.EUR?.toString() || '11.5');
+      setNewMargin((marginData * 100).toFixed(2)); // Convert to percentage
       setLoading(false);
     } catch (error) {
       console.error('Error loading rates:', error);
@@ -150,8 +155,8 @@ const CurrencySettings: React.FC = () => {
             <span className="text-2xl">🇺🇸</span>
             <div className="text-right">
               <div className="text-sm text-gray-600">USD → MAD</div>
-              <div className="text-2xl font-bold text-blue-700">{rates.USD.toFixed(4)}</div>
-              <div className="text-xs text-gray-500 mt-1">1 USD = {rates.USD} DH</div>
+              <div className="text-2xl font-bold text-blue-700">{rates.USD ? Number(rates.USD).toFixed(4) : '10.5000'}</div>
+              <div className="text-xs text-gray-500 mt-1">1 USD = {rates.USD || '10.50'} DH</div>
             </div>
           </div>
         </div>
@@ -161,8 +166,8 @@ const CurrencySettings: React.FC = () => {
             <span className="text-2xl">🇪🇺</span>
             <div className="text-right">
               <div className="text-sm text-gray-600">EUR → MAD</div>
-              <div className="text-2xl font-bold text-green-700">{rates.EUR.toFixed(4)}</div>
-              <div className="text-xs text-gray-500 mt-1">1 EUR = {rates.EUR} DH</div>
+              <div className="text-2xl font-bold text-green-700">{rates.EUR ? Number(rates.EUR).toFixed(4) : '11.5000'}</div>
+              <div className="text-xs text-gray-500 mt-1">1 EUR = {rates.EUR || '11.50'} DH</div>
             </div>
           </div>
         </div>
