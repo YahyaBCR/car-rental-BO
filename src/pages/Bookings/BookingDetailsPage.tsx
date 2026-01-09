@@ -33,8 +33,12 @@ interface BookingDetailsType {
   owner_phone: string;
   pickup_airport_name?: string;
   pickup_airport_code?: string;
+  pickup_city_name?: string;
+  pickup_city_region?: string;
   dropoff_airport_name?: string;
   dropoff_airport_code?: string;
+  dropoff_city_name?: string;
+  dropoff_city_region?: string;
   pickup_airport_fee?: number;
   dropoff_airport_fee?: number;
   car_id: string;
