@@ -52,8 +52,9 @@ const FinancialPage: React.FC = () => {
             <div className="card">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-sm text-textSecondary mb-1">Revenus Totaux</p>
+                  <p className="text-sm text-textSecondary mb-1">Chiffre d'Affaires Brut</p>
                   <p className="text-3xl font-bold text-textPrimary">{formatCurrency(reports.totalRevenue)}</p>
+                  <p className="text-xs text-textSecondary mt-2">Volume total des réservations</p>
                 </div>
                 <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: FlitCarColors.success + '20' }}>
                   <FaChartLine className="text-2xl" style={{ color: FlitCarColors.success }} />
@@ -64,9 +65,11 @@ const FinancialPage: React.FC = () => {
             <div className="card">
               <div className="flex items-start justify-between">
                 <div>
-                  <p className="text-sm text-textSecondary mb-1">Commissions</p>
+                  <p className="text-sm text-textSecondary mb-1">Revenus FlitCar</p>
                   <p className="text-3xl font-bold text-textPrimary">{formatCurrency(reports.totalCommission)}</p>
-                  <p className="text-xs text-textSecondary mt-2">{(reports.commissionRate * 100).toFixed(0)}% de commission</p>
+                  <p className="text-xs text-textSecondary mt-2">
+                    {reports.averageCommissionRate ? `Taux moyen: ${(reports.averageCommissionRate * 100).toFixed(1)}%` : 'Commissions plateforme'}
+                  </p>
                 </div>
                 <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: FlitCarColors.primary + '20' }}>
                   <FaDollarSign className="text-2xl" style={{ color: FlitCarColors.primary }} />
@@ -79,6 +82,7 @@ const FinancialPage: React.FC = () => {
                 <div>
                   <p className="text-sm text-textSecondary mb-1">À Payer aux Owners</p>
                   <p className="text-3xl font-bold text-textPrimary">{formatCurrency(reports.totalPayouts)}</p>
+                  <p className="text-xs text-textSecondary mt-2">Montants dus aux propriétaires</p>
                 </div>
                 <div className="w-12 h-12 rounded-lg flex items-center justify-center" style={{ backgroundColor: FlitCarColors.warning + '20' }}>
                   <FaWallet className="text-2xl" style={{ color: FlitCarColors.warning }} />
