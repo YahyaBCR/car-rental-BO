@@ -28,7 +28,6 @@ import SupportPage from './pages/Support/SupportPage';
 import LogsPage from './pages/Logs/LogsPage';
 import AdminUsersPage from './pages/AdminManagement/AdminUsersPage';
 import AdminFormPage from './pages/AdminManagement/AdminFormPage';
-import AccountPage from './pages/Account/AccountPage';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -69,7 +68,6 @@ function App() {
           <Route path="/support" element={<ProtectedRoute><SupportPage /></ProtectedRoute>} />
           <Route path="/logs" element={<ProtectedRoute><LogsPage /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
-          <Route path="/account" element={<ProtectedRoute><AccountPage /></ProtectedRoute>} />
           <Route path="/admin-management" element={<ProtectedRoute><AdminUsersPage /></ProtectedRoute>} />
           <Route path="/admin-management/add" element={<ProtectedRoute><AdminFormPage /></ProtectedRoute>} />
           <Route path="/admin-management/edit/:id" element={<ProtectedRoute><AdminFormPage /></ProtectedRoute>} />
