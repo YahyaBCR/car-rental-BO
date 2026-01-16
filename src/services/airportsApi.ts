@@ -73,6 +73,15 @@ const airportsApi = {
     const response = await apiClient.get('/admin/airports/stats');
     return response.data.data;
   },
+
+  // Bulk update status for multiple airports
+  bulkUpdateStatus: async (airportIds: string[], isActive: boolean) => {
+    const response = await apiClient.put('/admin/airports/bulk-status', {
+      airportIds,
+      isActive,
+    });
+    return response.data;
+  },
 };
 
 export default airportsApi;

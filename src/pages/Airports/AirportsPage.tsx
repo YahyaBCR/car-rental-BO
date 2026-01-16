@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaSearch, FaPlus, FaEdit, FaTrash, FaCheckCircle, FaTimesCircle, FaPlane } from 'react-icons/fa';
+import { FaSearch, FaPlus, FaEdit, FaTrash, FaCheckCircle, FaTimesCircle, FaPlane, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import airportsApi, { Airport, CreateAirportData, UpdateAirportData } from '../../services/airportsApi';
 import { FlitCarColors } from '../../utils/constants';
@@ -13,6 +13,10 @@ const AirportsPage: React.FC = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
+
+  // Selection state
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [bulkLoading, setBulkLoading] = useState(false);
 
   // Modal state
   const [showModal, setShowModal] = useState(false);
@@ -31,6 +35,11 @@ const AirportsPage: React.FC = () => {
   useEffect(() => {
     loadAirports();
   }, [page, statusFilter]);
+
+  // Clear selection when airports change
+  useEffect(() => {
+    setSelectedIds(new Set());
+  }, [airports]);
 
   const loadAirports = async () => {
     try {
@@ -56,6 +65,57 @@ const AirportsPage: React.FC = () => {
     e.preventDefault();
     setPage(1);
     loadAirports();
+  };
+
+  // Selection handlers
+  const toggleSelectAll = () => {
+    if (selectedIds.size === airports.length) {
+      setSelectedIds(new Set());
+    } else {
+      setSelectedIds(new Set(airports.map(a => a.id)));
+    }
+  };
+
+  const toggleSelect = (id: string) => {
+    const newSelected = new Set(selectedIds);
+    if (newSelected.has(id)) {
+      newSelected.delete(id);
+    } else {
+      newSelected.add(id);
+    }
+    setSelectedIds(newSelected);
+  };
+
+  const handleBulkActivate = async () => {
+    if (selectedIds.size === 0) return;
+
+    try {
+      setBulkLoading(true);
+      await airportsApi.bulkUpdateStatus(Array.from(selectedIds), true);
+      toast.success(`${selectedIds.size} aéroport(s) activé(s)`);
+      loadAirports();
+    } catch (error: any) {
+      console.error('Error activating airports:', error);
+      toast.error(error.response?.data?.message || 'Erreur lors de l\'activation');
+    } finally {
+      setBulkLoading(false);
+    }
+  };
+
+  const handleBulkDeactivate = async () => {
+    if (selectedIds.size === 0) return;
+
+    try {
+      setBulkLoading(true);
+      await airportsApi.bulkUpdateStatus(Array.from(selectedIds), false);
+      toast.success(`${selectedIds.size} aéroport(s) désactivé(s)`);
+      loadAirports();
+    } catch (error: any) {
+      console.error('Error deactivating airports:', error);
+      toast.error(error.response?.data?.message || 'Erreur lors de la désactivation');
+    } finally {
+      setBulkLoading(false);
+    }
   };
 
   const openCreateModal = () => {
@@ -122,6 +182,9 @@ const AirportsPage: React.FC = () => {
     }
   };
 
+  const isAllSelected = airports.length > 0 && selectedIds.size === airports.length;
+  const isSomeSelected = selectedIds.size > 0;
+
   return (
     <AdminLayout>
       <div className="space-y-6">
@@ -181,6 +244,41 @@ const AirportsPage: React.FC = () => {
           </div>
         </div>
 
+        {/* Bulk Actions Bar */}
+        {isSomeSelected && (
+          <div className="card bg-blue-50 border-blue-200">
+            <div className="flex items-center justify-between">
+              <span className="text-blue-800 font-medium">
+                {selectedIds.size} aéroport(s) sélectionné(s)
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleBulkActivate}
+                  disabled={bulkLoading}
+                  className="btn-primary flex items-center gap-2 text-sm py-2"
+                  style={{ backgroundColor: '#10B981' }}
+                >
+                  <FaToggleOn /> Activer
+                </button>
+                <button
+                  onClick={handleBulkDeactivate}
+                  disabled={bulkLoading}
+                  className="btn-primary flex items-center gap-2 text-sm py-2"
+                  style={{ backgroundColor: '#EF4444' }}
+                >
+                  <FaToggleOff /> Désactiver
+                </button>
+                <button
+                  onClick={() => setSelectedIds(new Set())}
+                  className="btn-secondary text-sm py-2"
+                >
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Table */}
         <div className="card overflow-hidden">
           {loading ? (
@@ -199,6 +297,14 @@ const AirportsPage: React.FC = () => {
                 <table className="w-full">
                   <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
+                      <th className="px-4 py-3 text-left">
+                        <input
+                          type="checkbox"
+                          checked={isAllSelected}
+                          onChange={toggleSelectAll}
+                          className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
+                        />
+                      </th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-textSecondary uppercase tracking-wider">
                         Aéroport
                       </th>
@@ -221,7 +327,18 @@ const AirportsPage: React.FC = () => {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {airports.map((airport) => (
-                      <tr key={airport.id} className="hover:bg-gray-50 transition-colors">
+                      <tr
+                        key={airport.id}
+                        className={`hover:bg-gray-50 transition-colors ${selectedIds.has(airport.id) ? 'bg-blue-50' : ''}`}
+                      >
+                        <td className="px-4 py-4">
+                          <input
+                            type="checkbox"
+                            checked={selectedIds.has(airport.id)}
+                            onChange={() => toggleSelect(airport.id)}
+                            className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary cursor-pointer"
+                          />
+                        </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
                             <div
