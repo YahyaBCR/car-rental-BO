@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaCar, FaUser, FaEnvelope, FaCalendar, FaMapMarkerAlt, FaGasPump, FaCog, FaUsers, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { FaArrowLeft, FaCar, FaEnvelope, FaCalendar, FaMapMarkerAlt, FaGasPump, FaCog, FaUsers, FaPlane, FaCity } from 'react-icons/fa';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import carsApi from '../../services/carsApi';
 import { FlitCarColors } from '../../utils/constants';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import toast from 'react-hot-toast';
+
+interface DeliveryLocation {
+  id: string;
+  name: string;
+  code?: string;
+  city?: string;
+  region?: string;
+  delivery_fee: number;
+}
 
 interface CarDetails {
   car: {
@@ -19,7 +28,6 @@ interface CarDetails {
     fuel_type: string;
     transmission: string;
     seats: number;
-    doors: number;
     mileage: number;
     color: string;
     description: string;
@@ -31,6 +39,10 @@ interface CarDetails {
     updated_at: string;
   };
   bookings: any[];
+  deliveryLocations?: {
+    airports: DeliveryLocation[];
+    cities: DeliveryLocation[];
+  };
 }
 
 const CarDetailsPage: React.FC = () => {
@@ -104,7 +116,7 @@ const CarDetailsPage: React.FC = () => {
     );
   }
 
-  const { car, bookings } = carDetails;
+  const { car, bookings, deliveryLocations } = carDetails;
 
   return (
     <AdminLayout>
@@ -158,7 +170,7 @@ const CarDetailsPage: React.FC = () => {
                 </div>
 
                 {/* Car Specs Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
                     <FaGasPump className="text-xl text-textSecondary" />
                     <div>
@@ -180,24 +192,10 @@ const CarDetailsPage: React.FC = () => {
                       <p className="text-sm font-medium text-textPrimary">{car.seats || 'N/A'}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <FaCar className="text-xl text-textSecondary" />
-                    <div>
-                      <p className="text-xs text-textSecondary">Portes</p>
-                      <p className="text-sm font-medium text-textPrimary">{car.doors || 'N/A'}</p>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Additional Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                  <div className="flex items-center gap-3">
-                    <FaMapMarkerAlt className="text-textSecondary" />
-                    <div>
-                      <p className="text-xs text-textSecondary">Localisation</p>
-                      <p className="text-sm font-medium text-textPrimary">{car.location_city || 'Non spécifié'}</p>
-                    </div>
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
                   <div className="flex items-center gap-3">
                     <FaCar className="text-textSecondary" />
                     <div>
@@ -219,6 +217,64 @@ const CarDetailsPage: React.FC = () => {
                       <p className="text-sm font-medium text-textPrimary">{formatDate(car.created_at)}</p>
                     </div>
                   </div>
+                </div>
+
+                {/* Delivery Locations */}
+                <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <FaMapMarkerAlt className="text-textSecondary" />
+                    <p className="text-sm font-semibold text-textPrimary">Lieux de livraison</p>
+                  </div>
+                  {(!deliveryLocations || (deliveryLocations.airports.length === 0 && deliveryLocations.cities.length === 0)) ? (
+                    <p className="text-sm text-textSecondary">Aucun lieu de livraison configuré</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {/* Airports */}
+                      {deliveryLocations.airports.length > 0 && (
+                        <div>
+                          <p className="text-xs text-textSecondary mb-2 flex items-center gap-1">
+                            <FaPlane className="text-xs" /> Aéroports
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {deliveryLocations.airports.map((airport) => (
+                              <span
+                                key={airport.id}
+                                className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-full text-xs font-medium"
+                              >
+                                <span className="font-bold">{airport.code}</span>
+                                <span>- {airport.city}</span>
+                                {airport.delivery_fee > 0 && (
+                                  <span className="text-blue-500">({formatCurrency(airport.delivery_fee)})</span>
+                                )}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {/* Cities */}
+                      {deliveryLocations.cities.length > 0 && (
+                        <div>
+                          <p className="text-xs text-textSecondary mb-2 flex items-center gap-1">
+                            <FaCity className="text-xs" /> Villes
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {deliveryLocations.cities.map((city) => (
+                              <span
+                                key={city.id}
+                                className="inline-flex items-center gap-1 px-3 py-1.5 bg-green-50 text-green-700 rounded-full text-xs font-medium"
+                              >
+                                <span>{city.name}</span>
+                                {city.region && <span className="text-green-500">({city.region})</span>}
+                                {city.delivery_fee > 0 && (
+                                  <span className="text-green-500">- {formatCurrency(city.delivery_fee)}</span>
+                                )}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* Description */}
