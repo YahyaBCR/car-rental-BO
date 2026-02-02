@@ -1,0 +1,607 @@
+{
+  "common": {
+    "appName": "FlitCar",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "filters": "Filtres",
+    "reset": "Réinitialiser",
+    "apply": "Appliquer",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non",
+    "day": "jour",
+    "day_plural": "jours",
+    "perDay": "par jour",
+    "currency": "DH",
+    "selectDate": "Sélectionnez vos dates",
+    "selectDates": "Choisir les dates",
+    "noResultsFound": "Aucun lieu trouvé",
+    "tryAnotherSearch": "Essayez une autre recherche",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "sendingInProgress": "Envoi en cours...",
+    "view": "Voir",
+    "from": "À partir de",
+    "totalPrice": "Prix total"
+  },
+  "nav": {
+    "home": "Accueil",
+    "search": "Rechercher",
+    "searchCar": "Rechercher une voiture",
+    "cars": "Véhicules",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "register": "Inscription",
+    "profile": "Profil",
+    "myBookings": "Mes réservations",
+    "myCars": "Mes voitures",
+    "favorites": "Favoris",
+    "myFavorites": "Mes Favoris",
+    "notifications": "Notifications",
+    "logout": "Déconnexion",
+    "becomeOwner": "Devenir propriétaire",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Confidentialité",
+    "viewProfile": "Voir le profil",
+    "language": "Langue / Language",
+    "currency": "Devise"
+  },
+  "home": {
+    "hero": {
+      "title": "Location de voiture au Maroc",
+      "subtitle": "Comparez et réservez parmi 500+ véhicules",
+      "cta": "Rechercher une voiture"
+    },
+    "search": {
+      "pickupLocation": "Lieu de prise en charge",
+      "dropoffLocation": "Lieu de retour",
+      "searchLocation": "Rechercher un lieu...",
+      "rentalDates": "Dates de location",
+      "selectDates": "Choisir les dates",
+      "hours": "Heures",
+      "searchButton": "Rechercher"
+    },
+    "quickFilters": {
+      "freeCancellation": "Annulation gratuite",
+      "unlimitedMileage": "Kilométrage illimité",
+      "fullInsurance": "Assurance complète"
+    },
+    "trustIndicators": {
+      "allInclusivePrice": "Prix tout compris",
+      "noHiddenFees": "Sans frais cachés",
+      "freeModification": "Modification gratuite"
+    },
+    "specialOffers": {
+      "title": "Offres du moment",
+      "subtitle": "Les voitures les plus populaires à prix réduits",
+      "badges": {
+        "bestDeal": "Meilleure offre",
+        "mostBooked": "Le plus réservé",
+        "premium": "Premium",
+        "recommended": "Recommandé"
+      },
+      "pricePerDay": "Prix par jour",
+      "viewOffer": "Voir l'offre"
+    },
+    "popularDestinations": {
+      "title": "Destinations populaires",
+      "subtitle": "Louez une voiture dans les principales villes du Maroc",
+      "airports": {
+        "casablanca": "Aéroport Mohammed V",
+        "marrakech": "Aéroport Menara",
+        "agadir": "Aéroport Al Massira",
+        "tangier": "Aéroport Ibn Battouta"
+      },
+      "availableVehicles": "véhicules disponibles"
+    },
+    "whyChooseUs": {
+      "title": "Pourquoi réserver avec FlitCar ?",
+      "subtitle": "La plateforme de location préférée des voyageurs",
+      "benefits": {
+        "bestPrice": {
+          "title": "Meilleur prix garanti",
+          "description": "Trouvez moins cher ailleurs ? On vous rembourse la différence"
+        },
+        "freeCancellation": {
+          "title": "Annulation gratuite",
+          "description": "Annulez jusqu'à 48h avant sans frais"
+        },
+        "satisfiedCustomers": {
+          "title": "2M+ clients satisfaits",
+          "description": "Rejoignez des millions de voyageurs"
+        },
+        "instantConfirmation": {
+          "title": "Réservation confirmée",
+          "description": "Confirmation instantanée par email"
+        }
+      }
+    },
+    "newsletter": {
+      "title": "Économisez sur votre prochaine location",
+      "subtitle": "Inscrivez-vous et recevez nos meilleures offres par email",
+      "placeholder": "Votre adresse email",
+      "subscribe": "S'abonner"
+    },
+    "stats": {
+      "availableVehicles": "Véhicules disponibles",
+      "satisfiedClients": "Clients satisfaits",
+      "citiesCovered": "Villes couvertes",
+      "averageRating": "Note moyenne"
+    }
+  },
+  "about": {
+    "title": "À PROPOS DE FLIT",
+    "subtitle": "La Location Sans Surprise",
+    "intro": {
+      "transparency": "transparence",
+      "reliability": "fiabilité",
+      "digitalization": "standardisation numérique"
+    },
+    "identity": {
+      "title": "1. NOTRE IDENTITÉ ET NOTRE MISSION",
+      "trustedIntermediary": "FLIT : Un Intermédiaire de Confiance",
+      "whatWeAreNot": "Ce que nous ne sommes pas"
+    },
+    "guarantee": {
+      "title": "2. LA GARANTIE FLIT",
+      "verifiedNetwork": "Un Réseau de Partenaires Vérifiés",
+      "partnershipAgreement": "Contrat Cadre de Partenariat strict",
+      "requirements": {
+        "license": "Posséder un agrément et un Cahier des Charges valide auprès du Ministère du Transport du Royaume du Maroc.",
+        "fleet": "S'engager contractuellement sur l'âge et l'entretien minimal de sa flotte.",
+        "pricing": "Respecter l'engagement tarifaire de la réservation FLIT : zéro frais caché ou majoration arbitraire à l'aéroport."
+      },
+      "priceTransparency": "Transparence des Prix",
+      "finalPrice": "prix final de la location",
+      "disputeResolution": {
+        "title": "Gestion des Litiges (Notre Engagement)",
+        "mediator": "médiateur obligatoire"
+      }
+    },
+    "technology": {
+      "title": "3. NOTRE PROMESSE TECHNOLOGIQUE",
+      "simplicity": "Simplicité Certifiée",
+      "bookingTime": "moins de deux minutes",
+      "bankingSecurity": "Sécurité Bancaire"
+    },
+    "contact": {
+      "title": "4. CONTACT ET INFORMATIONS LÉGALES",
+      "legalInfo": "Informations Légales Complètes"
+    }
+  },
+  "cgu": {
+    "title": "CONDITIONS GÉNÉRALES D'UTILISATION (CGU)",
+    "subtitle": "Plateforme FLIT",
+    "lastUpdated": "Dernière mise à jour",
+    "lastUpdate": "Dernière mise à jour",
+    "preamble": {
+      "title": "PRÉAMBULE : CE QUE NOUS SOMMES (ET SURTOUT CE QUE NOUS NE SOMMES PAS)",
+      "warning": "ATTENTION : FLIT est un intermédiaire technique.",
+      "noHiddenFees": "zéro frais caché ou majoration arbitraire à l'aéroport"
+    },
+    "articles": {
+      "article1": "OBJET DU SERVICE",
+      "article2": {
+        "title": "CONDITIONS D'ÉLIGIBILITÉ DU LOCATAIRE",
+        "minAge": "21 ans",
+        "drivingLicense": "permis de conduire valide depuis au moins 2 ans",
+        "creditCard": "carte bancaire valide"
+      },
+      "article3": {
+        "title": "RÉSERVATION ET PAIEMENT",
+        "process": "Processus",
+        "price": "Prix",
+        "currency": "Dirhams Marocains (MAD)",
+        "proof": "Preuve"
+      },
+      "article4": "LE CONTRAT DE LOCATION ET L'ÉTAT DU VÉHICULE",
+      "article5": "LA CAUTION (FRANCHISE)",
+      "article6": {
+        "title": "ANNULATION ET NO-SHOW",
+        "cancellation48h": "Annulation > 48h avant la prise en charge",
+        "cancellationLess48h": "Annulation < 48h avant la prise en charge",
+        "noShow": "No-Show (Non-présentation)",
+        "flightDelay": "Retard de vol"
+      },
+      "article7": "RESPONSABILITÉ LIMITÉE DE FLIT",
+      "article8": "PROTECTION DES DONNÉES (RGPD & CNDP)"
+    },
+    "support": "page de support"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Bienvenue sur FlitCar",
+      "email": "Email",
+      "password": "Mot de passe",
+      "emailPlaceholder": "votre@email.com",
+      "passwordPlaceholder": "••••••••",
+      "emailRequired": "Email requis",
+      "emailInvalid": "Email invalide",
+      "passwordRequired": "Mot de passe requis",
+      "passwordMin": "Au moins 6 caractères",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié?",
+      "signIn": "Se connecter",
+      "signingIn": "Connexion...",
+      "loginButton": "Se connecter",
+      "loggingIn": "Connexion...",
+      "noAccount": "Pas encore de compte ?",
+      "signUp": "S'inscrire",
+      "signupLink": "S'inscrire",
+      "accountBlocked": "Compte bloqué",
+      "contactAdmin": "Veuillez contacter l'administrateur pour plus d'informations.",
+      "blockedAccount": {
+        "title": "⚠️ Compte bloqué",
+        "message": "Veuillez contacter l'administrateur pour plus d'informations."
+      }
+    },
+    "signup": {
+      "title": "S'inscrire",
+      "subtitle": "Créer votre compte FlitCar",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "countryOfResidence": "Pays de résidence",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "placeholders": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "votre@email.com",
+        "phone": "6XX XXX XXX",
+        "password": "••••••••"
+      },
+      "signupButton": "S'inscrire",
+      "signingUp": "Inscription...",
+      "hasAccount": "Déjà un compte ?",
+      "loginLink": "Se connecter",
+      "terms": "En créant un compte, j'accepte les conditions d'utilisation"
+    },
+    "forgotPassword": {
+      "title": "Mot de passe oublié?",
+      "description": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "email": "Adresse email",
+      "emailPlaceholder": "votre@email.com",
+      "sendLink": "Envoyer le lien",
+      "sendingLink": "Envoi en cours...",
+      "emailSent": "Email envoyé!",
+      "emailSentMessage": "Si un compte existe avec l'adresse {email}, vous recevrez un lien de réinitialisation.",
+      "backToLogin": "Retour à la connexion",
+      "devMode": {
+        "title": "🔧 Mode développement",
+        "tokenLabel": "Token de réinitialisation (utilisez-le sur la page de réinitialisation):",
+        "resetLink": "Cliquez ici pour réinitialiser votre mot de passe →"
+      }
+    },
+    "resetPassword": {
+      "title": "Nouveau mot de passe",
+      "description": "Choisissez un nouveau mot de passe sécurisé pour votre compte.",
+      "newPassword": "Nouveau mot de passe *",
+      "confirmPassword": "Confirmer le mot de passe *",
+      "placeholders": {
+        "newPassword": "Min. 6 caractères",
+        "confirmPassword": "Retapez votre mot de passe"
+      },
+      "requirements": {
+        "title": "Votre mot de passe doit contenir:",
+        "minLength": "Au moins 6 caractères",
+        "matching": "Les deux mots de passe doivent correspondre"
+      },
+      "resetButton": "Réinitialiser le mot de passe",
+      "resetting": "Réinitialisation...",
+      "success": {
+        "title": "Mot de passe réinitialisé!",
+        "message": "Votre mot de passe a été réinitialisé avec succès. Vous allez être redirigé vers la page de connexion...",
+        "loginNow": "Se connecter maintenant"
+      },
+      "backToLogin": "Retour à la connexion"
+    },
+    "errors": {
+      "invalidEmail": "Email invalide",
+      "emailRequired": "Email requis",
+      "passwordRequired": "Mot de passe requis",
+      "passwordMinLength": "Au moins 6 caractères",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "firstNameRequired": "Prénom requis",
+      "lastNameRequired": "Nom requis",
+      "phoneRequired": "Téléphone requis",
+      "countryRequired": "Pays de résidence requis",
+      "confirmPasswordRequired": "Confirmation requise",
+      "fillAllFields": "Veuillez remplir tous les champs",
+      "tokenMissing": "Token de réinitialisation manquant",
+      "enterEmail": "Veuillez entrer votre adresse email",
+      "sendLinkError": "Erreur lors de l'envoi du lien",
+      "resetPasswordError": "Erreur lors de la réinitialisation du mot de passe"
+    }
+  },
+  "chat": {
+    "online": "En ligne",
+    "messagePlaceholder": "Écrivez votre message... (Entrée pour envoyer)",
+    "noMessages": "Aucun message pour le moment",
+    "startConversation": "Commencez la conversation en envoyant un message!",
+    "loadMessagesError": "Impossible de charger les messages",
+    "sendMessageError": "Erreur lors de l'envoi du message",
+    "sendInstructions": "Appuyez sur Entrée pour envoyer, Shift+Entrée pour nouvelle ligne",
+    "sendButton": "Envoyer",
+    "sendingButton": "Envoi..."
+  },
+  "messaging": {
+    "title": "Messages",
+    "noConversations": "Aucune conversation pour le moment",
+    "conversationsInfo": "Les conversations apparaîtront ici après la confirmation de vos réservations",
+    "loadConversationsError": "Impossible de charger les conversations"
+  },
+  "bookings": {
+    "title": "Mes réservations",
+    "status": {
+      "pending": "En attente",
+      "awaitingOwnerValidation": "Validation propriétaire (24h)",
+      "awaitingPayment": "En attente de paiement",
+      "confirmed": "Confirmée",
+      "inProgress": "En cours",
+      "completed": "Terminée",
+      "rejected": "Refusée",
+      "cancelled": "Annulée",
+      "expiredValidation": "Expirée (non validée)",
+      "expiredPayment": "Expirée (paiement)"
+    },
+    "noBookings": "Aucune réservation",
+    "noBookingsDescription": "Vous n'avez pas encore effectué de réservation",
+    "viewDetails": "Voir les détails",
+    "cancel": "Annuler la réservation",
+    "confirmCancel": "Êtes-vous sûr de vouloir annuler cette réservation?",
+    "cancelSuccess": "Réservation annulée avec succès",
+    "cancelError": "Erreur lors de l'annulation",
+    "loadBookingsError": "Erreur lors du chargement des réservations",
+    "bookingConfirmed": "Réservation confirmée ! Redirection vers le paiement...",
+    "bookingDetailsUpdated": "Détails de réservation mis à jour"
+  },
+  "booking": {
+    "title": "Confirmation de réservation",
+    "summary": "Récapitulatif",
+    "carDetails": "Détails du véhicule",
+    "rentalPeriod": "Période de location",
+    "from": "Du",
+    "to": "Au",
+    "days": "jours",
+    "pickupLocation": "Lieu de prise en charge",
+    "dropoffLocation": "Lieu de retour",
+    "airport": "Aéroport",
+    "city": "Ville",
+    "notDefined": "Non défini",
+    "additionalInfo": "Ajoutez des informations complémentaires...",
+    "priceBreakdown": {
+      "title": "Détail des prix",
+      "dailyRate": "Tarif journalier",
+      "numberOfDays": "Nombre de jours",
+      "subtotal": "Sous-total",
+      "serviceFee": "Frais de service",
+      "insurance": "Assurance",
+      "total": "Total"
+    },
+    "paymentMethod": {
+      "title": "Mode de paiement",
+      "fullPayment": "Paiement intégral",
+      "fullPaymentDesc": "Payez maintenant la totalité",
+      "depositPayment": "Paiement avec dépôt",
+      "depositPaymentDesc": "Payez {{percent}}% maintenant, le reste à la prise en charge"
+    },
+    "driverInfo": {
+      "title": "Informations du conducteur",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "driverLicense": "Permis de conduire"
+    },
+    "termsAndConditions": {
+      "title": "Conditions générales",
+      "accept": "J'accepte les conditions générales",
+      "minimumAge": "Âge minimum : 21 ans",
+      "validLicense": "Permis de conduire valide requis",
+      "deposit": "Caution remboursable à la fin de la location"
+    },
+    "confirmButton": "Réserver maintenant",
+    "cancelButton": "Annuler",
+    "success": "Réservation confirmée avec succès !",
+    "error": "Erreur lors de la réservation",
+    "processing": "Traitement en cours...",
+    "errors": {
+      "selectDates": "Veuillez sélectionner les dates",
+      "selectLocations": "Veuillez sélectionner les lieux de prise en charge et de retour",
+      "selectPickupAndDropoff": "Veuillez sélectionner les lieux de récupération et de retour",
+      "acceptTerms": "Veuillez accepter les conditions générales",
+      "enterPhone": "Veuillez saisir votre numéro de téléphone",
+      "ageRange": "L'âge doit être entre 18 et 100 ans"
+    },
+    "mode": {
+      "instantBooking": "Mode 1: Réservation instantanée"
+    }
+  },
+  "favorites": {
+    "title": "Mes Favoris",
+    "count": "Vous avez {count} véhicule(s) dans vos favoris",
+    "noFavorites": "Aucun favori pour le moment",
+    "noFavoritesTitle": "Aucun favori",
+    "noFavoritesDescription": "Commencez à ajouter des véhicules à vos favoris en cliquant sur le cœur",
+    "loadFavoritesError": "Erreur lors du chargement des favoris",
+    "addedToFavorites": "Ajouté aux favoris",
+    "removedFromFavorites": "Retiré des favoris",
+    "loginRequired": "Veuillez vous connecter pour ajouter des favoris",
+    "addToFavorites": "Ajouter aux favoris",
+    "removeFromFavorites": "Retirer des favoris"
+  },
+  "carDetails": {
+    "title": "Détails du véhicule",
+    "specifications": "Caractéristiques",
+    "features": "Équipements",
+    "seats": "Places",
+    "transmission": "Transmission",
+    "automatic": "Automatique",
+    "manual": "Manuelle",
+    "fuelType": "Carburant",
+    "gasoline": "Essence",
+    "diesel": "Diesel",
+    "electric": "Électrique",
+    "hybrid": "Hybride",
+    "color": "Couleur",
+    "black": "Noir",
+    "white": "Blanc",
+    "gray": "Gris",
+    "silver": "Argent",
+    "blue": "Bleu",
+    "red": "Rouge",
+    "defaultDescription": "Profitez de cette magnifique {{brand}} {{model}} {{year}}. Voiture bien entretenue, confortable et parfaitement adaptée pour vos déplacements. Idéale pour découvrir la ville ou partir en escapade. Assurance tous risques incluse.",
+    "bookNow": "Réserver maintenant",
+    "owner": "Propriétaire",
+    "ownerFlitCar": "Propriétaire FlitCar",
+    "reviews": "Avis",
+    "location": "Localisation",
+    "availability": "Disponibilité",
+    "pricing": "Tarification",
+    "model": "Modèle",
+    "year": "Année",
+    "cruiseControl": "Régulateur de vitesse",
+    "cleanliness": "Propreté",
+    "vehicleCondition": "État véhicule",
+    "reviewsExamples": {
+      "excellent": "Excellente expérience ! La voiture était impeccable et le propriétaire très réactif.",
+      "veryGood": "Très bonne voiture, confortable pour un long trajet. Je recommande !"
+    },
+    "bookingOptions": {
+      "title": "Options de réservation",
+      "instantBooking": "Réservation instantanée",
+      "instantBookingDesc": "Confirmation immédiate sans validation du propriétaire",
+      "requestBooking": "Demande de réservation",
+      "requestBookingDesc": "Nécessite la validation du propriétaire"
+    },
+    "selectDates": "Sélectionnez vos dates",
+    "totalPrice": "Prix total",
+    "bookNow": "Réserver maintenant",
+    "loginToBook": "Se connecter pour réserver",
+    "searchAirport": "Rechercher un aéroport...",
+    "alerts": {
+      "selectDates": "Veuillez sélectionner des dates de location",
+      "selectAirport": "Veuillez sélectionner un aéroport"
+    }
+  },
+  "refundPolicy": {
+    "title": "Politique de remboursement",
+    "compactTitle": "Politique d'annulation",
+    "freeCancellation": "Annulation gratuite jusqu'à 7 jours avant la réservation.",
+    "fullRefund": "Remboursement à 100%",
+    "partialRefund": "Remboursement partiel selon les conditions",
+    "moreThan7Days": "Annulation plus de 7 jours avant",
+    "refundPercent": "Remboursement de {percent}% du montant payé",
+    "between3And7Days": "Annulation entre 3 et 7 jours avant",
+    "lessThan3Days": "Annulation moins de 3 jours avant",
+    "tip": "💡 Astuce : Pour annuler votre réservation, rendez-vous dans \"Mes réservations\" et cliquez sur \"Annuler la réservation\". Le remboursement sera automatique selon la politique ci-dessus."
+  },
+  "support": {
+    "title": "Support",
+    "ticketCreated": "Ticket créé avec succès ! Notre équipe vous répondra bientôt.",
+    "createTicketError": "Erreur lors de la création du ticket",
+    "categories": {
+      "booking": "Réservation",
+      "vehicle": "Véhicule",
+      "payment": "Paiement",
+      "other": "Autre"
+    },
+    "status": {
+      "open": "Ouvert",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    },
+    "describeProblem": "Décrivez votre problème ou question..."
+  },
+  "reviews": {
+    "addReview": "Ajouter un avis",
+    "selectRating": "Veuillez sélectionner une note",
+    "veryDissatisfied": "Très insatisfait",
+    "verySatisfied": "Très satisfait",
+    "shareFeedback": "Partagez votre expérience avec cette voiture..."
+  },
+  "profile": {
+    "title": "Mon profil",
+    "personalInfo": {
+      "title": "Informations personnelles",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "dateOfBirth": "Date de naissance",
+      "address": "Adresse"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "language": "Langue",
+      "notifications": "Notifications",
+      "newsletter": "Newsletter"
+    },
+    "updateSuccess": "Profil mis à jour avec succès",
+    "updateError": "Erreur lors de la mise à jour du profil"
+  },
+  "footer": {
+    "search": "Rechercher",
+    "becomeOwner": "Devenir propriétaire",
+    "about": "À propos",
+    "contact": "Contact",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Confidentialité",
+    "tagline": "Votre voiture, partout au Maroc.",
+    "company": {
+      "title": "FlitCar",
+      "about": "À propos",
+      "careers": "Carrières",
+      "press": "Presse",
+      "blog": "Blog"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Centre d'aide",
+      "contact": "Contact",
+      "faq": "FAQ"
+    },
+    "legal": {
+      "title": "Légal",
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique des cookies"
+    },
+    "social": {
+      "title": "Suivez-nous"
+    },
+    "copyright": "© {{year}} FlitCar. Votre voiture, partout au Maroc."
+  },
+  "errors": {
+    "notFound": "Page non trouvée",
+    "serverError": "Erreur serveur",
+    "networkError": "Erreur de connexion",
+    "tryAgain": "Réessayer",
+    "loadError": "Erreur lors du chargement"
+  },
+  "countries": {
+    "algeria": "Algérie",
+    "selectCountry": "Sélectionnez votre pays"
+  },
+  "languages": {
+    "french": "Français",
+    "english": "English",
+    "arabic": "العربية"
+  }
+}

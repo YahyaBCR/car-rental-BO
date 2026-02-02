@@ -1,0 +1,40 @@
+/// <reference types="react-scripts" />
+
+declare module 'react-icons/fa' {
+  import { IconType } from 'react-icons';
+  export const FaCar: IconType;
+  export const FaUser: IconType;
+  export const FaSignOutAlt: IconType;
+  export const FaEnvelope: IconType;
+  export const FaLock: IconType;
+  export const FaPhone: IconType;
+  export const FaSearch: IconType;
+  export const FaShieldAlt: IconType;
+  export const FaMapMarkedAlt: IconType;
+  export const FaStar: IconType;
+  export const FaFacebookF: IconType;
+  export const FaTwitter: IconType;
+  export const FaInstagram: IconType;
+  export const FaLinkedinIn: IconType;
+  export const FaBars: IconType;
+  export const FaTimes: IconType;
+  export const FaCalendarCheck: IconType;
+  export const FaChevronDown: IconType;
+  export const FaChevronUp: IconType;
+  export const FaChevronLeft: IconType;
+  export const FaChevronRight: IconType;
+  export const FaClock: IconType;
+  export const FaComments: IconType;
+  export const FaEdit: IconType;
+  export const FaSave: IconType;
+  export const FaFilter: IconType;
+  export const FaPlane: IconType;
+  export const FaCog: IconType;
+  export const FaGasPump: IconType;
+  export const FaUsers: IconType;
+  export const FaDollarSign: IconType;
+  export const FaMapMarkerAlt: IconType;
+  export const FaCalendarAlt: IconType;
+  export const FaPalette: IconType;
+  export const FaFire: IconType;
+}

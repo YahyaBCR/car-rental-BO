@@ -1,0 +1,1072 @@
+{
+  "common": {
+    "appName": "FlitCar",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "save": "Enregistrer",
+    "edit": "Modifier",
+    "modify": "Modifier",
+    "delete": "Supprimer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "filters": "Filtres",
+    "reset": "Réinitialiser",
+    "apply": "Appliquer",
+    "close": "Fermer",
+    "yes": "Oui",
+    "no": "Non",
+    "day": "jour",
+    "day_plural": "jours",
+    "perDay": "par jour",
+    "currency": "DH",
+    "selectDate": "Sélectionnez vos dates",
+    "selectDates": "Choisir les dates",
+    "noResultsFound": "Aucun lieu trouvé",
+    "tryAnotherSearch": "Essayez une autre recherche",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "sendingInProgress": "Envoi en cours...",
+    "view": "Voir",
+    "from": "À partir de",
+    "totalPrice": "Prix total"
+  },
+  "nav": {
+    "home": "Accueil",
+    "search": "Rechercher",
+    "searchCar": "Rechercher une voiture",
+    "cars": "Véhicules",
+    "about": "À propos",
+    "contact": "Contact",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "register": "Inscription",
+    "profile": "Profil",
+    "myBookings": "Mes réservations",
+    "myCars": "Mes voitures",
+    "favorites": "Favoris",
+    "myFavorites": "Mes Favoris",
+    "notifications": "Notifications",
+    "logout": "Déconnexion",
+    "becomeOwner": "Devenir propriétaire",
+    "terms": "Conditions & Confidentialité",
+    "privacy": "Confidentialité",
+    "viewProfile": "Voir le profil",
+    "language": "Langue / Language",
+    "currency": "Devise",
+    "settings": "Paramètres",
+    "menu": "Menu",
+    "support": "Support / FAQ",
+    "sections": {
+      "activity": "Activité",
+      "settings": "Paramètres",
+      "help": "Aide",
+      "account": "Compte"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Réservez et partez",
+      "cta": "Rechercher une voiture"
+    },
+    "search": {
+      "pickupLocation": "Lieu de prise en charge",
+      "dropoffLocation": "Lieu de retour",
+      "searchLocation": "Rechercher un lieu...",
+      "rentalDates": "Dates de location",
+      "selectDates": "Choisir les dates",
+      "startDate": "Date aller",
+      "endDate": "Date retour",
+      "pickupDate": "Date de prise en charge",
+      "returnDate": "Date de restitution",
+      "selectPickupDate": "Sélectionner la date",
+      "selectReturnDate": "Sélectionner la date",
+      "pickupTime": "Heure de prise en charge",
+      "returnTime": "Heure de restitution",
+      "time": "Heure",
+      "hours": "Heures",
+      "searchButton": "Rechercher"
+    },
+    "quickFilters": {
+      "freeCancellation": "Annulation gratuite",
+      "unlimitedMileage": "Kilométrage illimité",
+      "fullInsurance": "Assurance complète"
+    },
+    "trustIndicators": {
+      "allInclusivePrice": "Prix tout compris",
+      "noHiddenFees": "Sans frais cachés",
+      "freeModification": "Modification gratuite"
+    },
+    "specialOffers": {
+      "title": "Offres du moment",
+      "subtitle": "Les voitures les plus populaires à prix réduits",
+      "badges": {
+        "bestDeal": "Meilleure offre",
+        "mostBooked": "Le plus réservé",
+        "premium": "Premium",
+        "recommended": "Recommandé"
+      },
+      "pricePerDay": "Prix par jour",
+      "viewOffer": "Voir l'offre"
+    },
+    "popularDestinations": {
+      "title": "Destinations populaires",
+      "subtitle": "Louez une voiture dans les principales villes du Maroc",
+      "airports": {
+        "casablanca": "Aéroport Mohammed V",
+        "marrakech": "Aéroport Menara",
+        "agadir": "Aéroport Al Massira",
+        "tangier": "Aéroport Ibn Battouta"
+      },
+      "availableVehicles": "véhicules disponibles"
+    },
+    "whyChooseUs": {
+      "title": "Pourquoi réserver avec FlitCar ?",
+      "subtitle": "La plateforme de location préférée des voyageurs",
+      "benefits": {
+        "bestPrice": {
+          "title": "Meilleur prix garanti",
+          "description": "Trouvez moins cher ailleurs ? On vous rembourse la différence"
+        },
+        "freeCancellation": {
+          "title": "Annulation gratuite",
+          "description": "Annulez jusqu'à 48h avant sans frais"
+        },
+        "satisfiedCustomers": {
+          "title": "2M+ clients satisfaits",
+          "description": "Rejoignez des millions de voyageurs"
+        },
+        "instantConfirmation": {
+          "title": "Réservation confirmée",
+          "description": "Confirmation instantanée par email"
+        }
+      }
+    },
+    "newsletter": {
+      "title": "Économisez sur votre prochaine location",
+      "subtitle": "Inscrivez-vous et recevez nos meilleures offres par email",
+      "placeholder": "Votre adresse email",
+      "subscribe": "S'abonner"
+    },
+    "stats": {
+      "availableVehicles": "Véhicules disponibles",
+      "satisfiedClients": "Clients satisfaits",
+      "citiesCovered": "Villes couvertes",
+      "averageRating": "Note moyenne"
+    }
+  },
+  "about": {
+    "title": "À PROPOS DE FLIT",
+    "subtitle": "La Location Sans Surprise",
+    "intro": {
+      "transparency": "transparence",
+      "reliability": "fiabilité",
+      "digitalization": "standardisation numérique"
+    },
+    "identity": {
+      "title": "1. NOTRE IDENTITÉ ET NOTRE MISSION",
+      "trustedIntermediary": "FLIT : Un Intermédiaire de Confiance",
+      "whatWeAreNot": "Ce que nous ne sommes pas"
+    },
+    "guarantee": {
+      "title": "2. LA GARANTIE FLIT",
+      "verifiedNetwork": "Un Réseau de Partenaires Vérifiés",
+      "partnershipAgreement": "Contrat Cadre de Partenariat strict",
+      "requirements": {
+        "license": "Posséder un agrément et un Cahier des Charges valide auprès du Ministère du Transport du Royaume du Maroc.",
+        "fleet": "S'engager contractuellement sur l'âge et l'entretien minimal de sa flotte.",
+        "pricing": "Respecter l'engagement tarifaire de la réservation FLIT : zéro frais caché ou majoration arbitraire à l'aéroport."
+      },
+      "priceTransparency": "Transparence des Prix",
+      "finalPrice": "prix final de la location",
+      "disputeResolution": {
+        "title": "Gestion des Litiges (Notre Engagement)",
+        "mediator": "médiateur obligatoire"
+      }
+    },
+    "technology": {
+      "title": "3. NOTRE PROMESSE TECHNOLOGIQUE",
+      "simplicity": "Simplicité Certifiée",
+      "bookingTime": "moins de deux minutes",
+      "bankingSecurity": "Sécurité Bancaire"
+    },
+    "contact": {
+      "title": "4. CONTACT ET INFORMATIONS LÉGALES",
+      "legalInfo": "Informations Légales Complètes"
+    }
+  },
+  "cgu": {
+    "title": "CONDITIONS GÉNÉRALES D'UTILISATION (CGU)",
+    "subtitle": "Plateforme FLIT",
+    "lastUpdated": "Dernière mise à jour",
+    "backButton": "Retour",
+    "contact": {
+      "title": "Contact",
+      "text": "Pour toute question concernant ces CGU, vous pouvez nous contacter via notre",
+      "supportLink": "page de support"
+    },
+    "preamble": {
+      "title": "PRÉAMBULE : CE QUE NOUS SOMMES (ET SURTOUT CE QUE NOUS NE SOMMES PAS)",
+      "paragraph1": "L'accès à la plateforme FLIT (ci-après \"la Plateforme\") implique l'acceptation sans réserve des présentes conditions. Si vous n'êtes pas d'accord, quittez le site immédiatement.",
+      "paragraph2": "FLIT est une société de droit marocain (SARL au capital de [Montant] DH, sise à [Adresse], RC n°[Numéro]).",
+      "warning": "ATTENTION : FLIT est un intermédiaire technique.",
+      "paragraph3": "Nous ne sommes PAS une agence de location de voitures. Nous ne possédons aucun véhicule. Le contrat de location final est conclu exclusivement entre vous (\"le Locataire\") et l'agence de location partenaire (\"le Loueur\"). FLIT n'est pas partie à ce contrat."
+    },
+    "article1": {
+      "title": "ARTICLE 1 : OBJET DU SERVICE",
+      "intro": "Le service FLIT se limite à :",
+      "item1": "Agréger les offres de loueurs professionnels marocains vérifiés.",
+      "item2": "Permettre la réservation et le paiement sécurisé d'un acompte ou de la totalité de la prestation.",
+      "item3": "Transmettre les coordonnées du Locataire au Loueur.",
+      "conclusion": "Une fois la réservation confirmée, la mission de FLIT est considérée comme remplie."
+    },
+    "article2": {
+      "title": "ARTICLE 2 : CONDITIONS D'ÉLIGIBILITÉ DU LOCATAIRE",
+      "intro": "Pour utiliser FLIT, vous certifiez sur l'honneur :",
+      "item1": "Avoir au moins 21 ans (ou plus selon les conditions spécifiques du véhicule choisi).",
+      "item2": "Être titulaire d'un permis de conduire valide depuis au moins 2 ans.",
+      "item3": "Disposer d'une carte bancaire valide au nom du conducteur principal pour le dépôt de la caution (voir Article 5). Les cartes de débit, prépayées ou \"Electron\" sont systématiquement refusées pour la caution. FLIT ne remboursera pas une réservation annulée pour défaut de carte de crédit valide au comptoir."
+    },
+    "article3": {
+      "title": "ARTICLE 3 : RÉSERVATION ET PAIEMENT",
+      "section1": {
+        "title": "3.1 Processus",
+        "text": "La réservation n'est ferme qu'après réception de l'email de confirmation de FLIT ET encaissement du paiement."
+      },
+      "section2": {
+        "title": "3.2 Prix",
+        "text": "Les prix sont affichés en Dirhams Marocains (MAD). Toute conversion de devise affichée est indicative. Les frais de change bancaires restent à votre charge."
+      },
+      "section3": {
+        "title": "3.3 Preuve",
+        "text": "Les registres informatisés de FLIT font foi entre les parties pour la preuve des communications, commandes et paiements."
+      }
+    },
+    "article4": {
+      "title": "ARTICLE 4 : LE CONTRAT DE LOCATION ET L'ÉTAT DU VÉHICULE",
+      "intro": "C'est ici que vous devez comprendre votre responsabilité :",
+      "item1": "Le contrat de location (y compris l'état des lieux du véhicule) est signé sur place avec le Loueur.",
+      "item2": "FLIT ne garantit pas l'état mécanique ou esthétique exact du véhicule. Bien que nous auditions nos partenaires, nous ne sommes pas dans le moteur.",
+      "item3": "Tout litige concernant l'état du véhicule, une panne, un accident, ou le carburant doit être réglé directement avec le Loueur. FLIT décline toute responsabilité en cas de défaillance du véhicule."
+    },
+    "article5": {
+      "title": "ARTICLE 5 : LA CAUTION (FRANCHISE)",
+      "intro": "Ne confondez pas le paiement en ligne et la caution.",
+      "item1": "Une caution (empreinte bancaire) sera exigée par le Loueur lors de la prise du véhicule.",
+      "item2": "FLIT n'encaisse pas la caution.",
+      "item3": "Si vous ne pouvez pas fournir la caution (plafond insuffisant, mauvaise carte), le Loueur refusera le véhicule. Dans ce cas,",
+      "item3Bold": "aucun remboursement de la part de FLIT ne sera effectué",
+      "item3End": ". C'est votre responsabilité de gérer vos plafonds bancaires avant d'arriver au Maroc."
+    },
+    "article6": {
+      "title": "ARTICLE 6 : ANNULATION ET \"NO-SHOW\"",
+      "intro": "La flexibilité a un coût. Voici notre politique, non négociable :",
+      "item1Title": "Annulation > 48h avant la prise en charge :",
+      "item1Text": "Remboursement à 100% (moins frais de dossier de 50 MAD).",
+      "item2Title": "Annulation < 48h avant la prise en charge :",
+      "item2Text": "Aucun remboursement. Le montant total est conservé à titre d'indemnité.",
+      "item3Title": "No-Show (Non-présentation) :",
+      "item3Text": "Si vous ne vous présentez pas dans les 2 heures suivant l'heure prévue sans prévenir, la réservation est annulée, le véhicule remis en location, et 100% du montant est conservé.",
+      "item4Title": "Retard de vol :",
+      "item4Text": "C'est à vous de communiquer votre numéro de vol lors de la réservation. Si vous ne l'avez pas fait et que l'agence ferme, c'est votre problème."
+    },
+    "article7": {
+      "title": "ARTICLE 7 : RESPONSABILITÉ LIMITÉE DE FLIT",
+      "intro": "FLIT ne saurait être tenu responsable :",
+      "item1": "Des informations erronées fournies par le Loueur (photos non contractuelles, options manquantes).",
+      "item2": "De l'impossibilité d'accéder à la plateforme pour cause de maintenance ou force majeure.",
+      "item3": "Des dommages indirects subis par le Locataire (perte de temps, perte de chance, vacances gâchées suite à une panne). Notre responsabilité financière, si elle devait être engagée, est strictement plafonnée au montant de la commission perçue par FLIT sur la transaction."
+    },
+    "article8": {
+      "title": "ARTICLE 8 : PROTECTION DES DONNÉES (RGPD & CNDP)",
+      "intro": "Conformément à la loi 09-08, vos données sont traitées pour la gestion de la réservation.",
+      "item1": "Vous acceptez expressément que vos données (Nom, Passeport, Permis) soient transférées au Loueur partenaire.",
+      "item2": "Ce traitement a fait l'objet d'une déclaration à la CNDP sous le numéro [En cours]."
+    }
+  },
+  "privacyPage": {
+    "title": "POLITIQUE DE CONFIDENTIALITÉ",
+    "subtitle": "FLIT",
+    "effectiveDate": "Date d'application",
+    "backButton": "Retour",
+    "contact": {
+      "title": "Questions ?",
+      "text": "Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter via notre",
+      "supportLink": "page de support"
+    },
+    "preamble": {
+      "title": "PRÉAMBULE ET CHAMP D'APPLICATION",
+      "text": "La présente Politique de Confidentialité (la \"Politique\") vise à informer l'utilisateur sur la manière dont FLIT traite ses données personnelles conformément à la Loi Marocaine n° 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel. L'utilisation de la Plateforme FLIT implique l'acceptation de cette Politique."
+    },
+    "section1": {
+      "title": "1. IDENTITÉ ET RÔLE DES ACTEURS",
+      "subsection1": {
+        "title": "1.1 Le Responsable de Traitement",
+        "text": "La société FLIT SARL, dont le siège social est situé à [Adresse Complète], est le Responsable du Traitement pour les données collectées directement via la plateforme."
+      },
+      "subsection2": {
+        "title": "1.2 Conformité Légale (CNDP)",
+        "text": "Les traitements de données mis en œuvre par FLIT ont été notifiés à la CNDP (Commission Nationale de contrôle de la protection des Données). La preuve de cette déclaration est en cours d'obtention et sera publiée sous le numéro [À insérer] dès réception."
+      },
+      "subsection3": {
+        "title": "1.3 Le Partenaire Loueur (Co-responsabilité)",
+        "text": "FLIT est un intermédiaire. Une fois la réservation transmise, le Loueur Partenaire désigné devient, à son tour, un responsable de traitement pour les données nécessaires à l'établissement du contrat de location physique sur place. FLIT n'est pas responsable de la politique de conservation des données propre au Loueur."
+      }
+    },
+    "section2": {
+      "title": "2. LES DONNÉES COLLECTÉES (LISTE EXPLICITE)",
+      "intro": "Par choix stratégique, FLIT ne collecte que les informations strictement nécessaires pour valider et transmettre la réservation. Nous ne collectons pas de copies de documents d'identité (passeport, permis) :",
+      "item1Title": "Données d'Identification et Contact :",
+      "item1Text": "Nom, prénom, nationalité, âge déclaré par l'utilisateur, numéro de téléphone et adresse e-mail.",
+      "item2Title": "Données de Transaction :",
+      "item2Text": "Détails de la réservation (dates, véhicule, options), montant de l'acompte payé. FLIT ne stocke pas les numéros complets de carte bancaire, la gestion étant assurée par un prestataire de paiement certifié (ex: CMI).",
+      "item3Title": "Données Techniques et de Navigation :",
+      "item3Text": "Adresse IP, type d'appareil utilisé, données de géolocalisation (si accordé) et historiques de connexion pour des raisons de sécurité."
+    },
+    "section3": {
+      "title": "3. FINALITÉS, BASES LÉGALES ET DÉCHARGE DE RESPONSABILITÉ",
+      "subsection1": {
+        "title": "3.1 Finalités Principales (Base Contractuelle)",
+        "intro": "Les données sont traitées pour :",
+        "item1": "L'exécution du service de réservation et la gestion du compte utilisateur.",
+        "item2": "La transmission des informations d'identité et de contact de base au Loueur Partenaire pour préparer la prise en charge.",
+        "item3": "L'envoi des confirmations de réservation et la communication en cas d'urgence."
+      },
+      "subsection2": {
+        "title": "3.2 Intérêt Légitime et Sécurité",
+        "intro": "Les données sont utilisées dans l'intérêt légitime de FLIT pour :",
+        "item1": "Assurer la sécurité de la plateforme et prévenir la fraude ou l'abus.",
+        "item2": "Améliorer les services et l'expérience utilisateur par l'analyse statistique (anonymisée si possible)."
+      },
+      "subsection3": {
+        "title": "3.3 Avertissement de Décharge de Responsabilité",
+        "text": "FLIT décline toute obligation de vérification de la véracité des informations (âge, nationalité) ou de la validité des documents (permis, passeport) qui seront requis sur place par le Loueur. L'utilisateur est seul responsable de l'exactitude des informations fournies et de la présentation des documents légaux nécessaires à la prise en charge du véhicule au Maroc. Tout refus de location par le Partenaire Loueur pour non-conformité des documents n'engagera pas la responsabilité de FLIT et ne donnera lieu à aucun remboursement."
+      }
+    },
+    "section4": {
+      "title": "4. DESTINATAIRES ET TRANSFERT DE DONNÉES",
+      "subsection1": {
+        "title": "4.1 Destinataires Internes et Externes",
+        "intro": "Vos données ne sont transmises qu'aux tiers suivants, pour les seules finalités nécessaires à l'exécution du service :",
+        "item1": "Le Loueur Partenaire de votre réservation.",
+        "item2": "Nos prestataires techniques (hébergeur, plateforme d'emailing).",
+        "item3": "Les autorités judiciaires ou administratives marocaines, sur requête légale."
+      },
+      "subsection2": {
+        "title": "4.2 Interdiction de Vente",
+        "text": "FLIT s'engage formellement à",
+        "bold": "ne jamais vendre ni louer",
+        "textEnd": "vos données personnelles à des fins de marketing commercial à des tiers."
+      }
+    },
+    "section5": {
+      "title": "5. DURÉE DE CONSERVATION ET SÉCURITÉ",
+      "subsection1": {
+        "title": "5.1 Durée",
+        "text1": "Les données d'identité et de contact liées à la réservation sont conservées pour une durée maximale de",
+        "duration": "douze (12) mois",
+        "text2": "après la fin du contrat de location, afin de gérer les éventuels litiges (amendes, sinistres) avec le Loueur ou les autorités. Au-delà, elles sont archivées à des fins légales ou définitivement supprimées."
+      },
+      "subsection2": {
+        "title": "5.2 Sécurité",
+        "text": "FLIT met en œuvre des mesures techniques et organisationnelles appropriées pour garantir la sécurité et la confidentialité de vos données, notamment par le chiffrement des communications (SSL/TLS) et la sécurisation des accès aux serveurs."
+      }
+    },
+    "section6": {
+      "title": "6. VOS DROITS ET RECOURS",
+      "paragraph1": "Conformément à la Loi 09-08, vous disposez notamment d'un droit d'accès, de rectification et d'opposition au traitement de vos données.",
+      "paragraph2": "Pour exercer ces droits, veuillez adresser votre demande (accompagnée d'une copie de votre pièce d'identité si nécessaire pour vérifier votre identité) à notre Délégué à la Protection des Données :",
+      "emailLabel": "Adresse e-mail dédiée :"
+    },
+    "section7": {
+      "title": "7. UTILISATION DES COOKIES",
+      "text": "FLIT utilise des cookies pour assurer le bon fonctionnement du site (cookies essentiels) et pour mesurer l'audience (cookies analytiques). Un mécanisme de gestion du consentement aux cookies est mis à disposition de l'utilisateur pour exercer son choix lors de sa première visite."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "subtitle": "Bienvenue sur FlitCar",
+      "email": "Email",
+      "password": "Mot de passe",
+      "emailPlaceholder": "votre@email.com",
+      "passwordPlaceholder": "••••••••",
+      "emailRequired": "Email requis",
+      "emailInvalid": "Email invalide",
+      "passwordRequired": "Mot de passe requis",
+      "passwordMin": "Au moins 6 caractères",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié?",
+      "signIn": "Se connecter",
+      "signingIn": "Connexion...",
+      "loginButton": "Se connecter",
+      "loggingIn": "Connexion...",
+      "noAccount": "Pas encore de compte ?",
+      "signUp": "S'inscrire",
+      "signupLink": "S'inscrire",
+      "accountBlocked": "Compte bloqué",
+      "contactAdmin": "Veuillez contacter l'administrateur pour plus d'informations.",
+      "blockedAccount": {
+        "title": "⚠️ Compte bloqué",
+        "message": "Veuillez contacter l'administrateur pour plus d'informations."
+      }
+    },
+    "signup": {
+      "title": "S'inscrire",
+      "subtitle": "Créer votre compte FlitCar",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "countryOfResidence": "Pays de résidence",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "placeholders": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "votre@email.com",
+        "phone": "6XX XXX XXX",
+        "password": "••••••••"
+      },
+      "signupButton": "S'inscrire",
+      "signingUp": "Inscription...",
+      "hasAccount": "Déjà un compte ?",
+      "loginLink": "Se connecter",
+      "terms": "En créant un compte, j'accepte les conditions d'utilisation"
+    },
+    "forgotPassword": {
+      "title": "Mot de passe oublié?",
+      "description": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+      "email": "Adresse email",
+      "emailPlaceholder": "votre@email.com",
+      "sendLink": "Envoyer le lien",
+      "sendingLink": "Envoi en cours...",
+      "emailSent": "Email envoyé!",
+      "emailSentMessage": "Si un compte existe avec l'adresse {email}, vous recevrez un lien de réinitialisation.",
+      "backToLogin": "Retour à la connexion",
+      "devMode": {
+        "title": "🔧 Mode développement",
+        "tokenLabel": "Token de réinitialisation (utilisez-le sur la page de réinitialisation):",
+        "resetLink": "Cliquez ici pour réinitialiser votre mot de passe →"
+      }
+    },
+    "resetPassword": {
+      "title": "Nouveau mot de passe",
+      "description": "Choisissez un nouveau mot de passe sécurisé pour votre compte.",
+      "newPassword": "Nouveau mot de passe *",
+      "confirmPassword": "Confirmer le mot de passe *",
+      "placeholders": {
+        "newPassword": "Min. 6 caractères",
+        "confirmPassword": "Retapez votre mot de passe"
+      },
+      "requirements": {
+        "title": "Votre mot de passe doit contenir:",
+        "minLength": "Au moins 6 caractères",
+        "matching": "Les deux mots de passe doivent correspondre"
+      },
+      "resetButton": "Réinitialiser le mot de passe",
+      "resetting": "Réinitialisation...",
+      "success": {
+        "title": "Mot de passe réinitialisé!",
+        "message": "Votre mot de passe a été réinitialisé avec succès. Vous allez être redirigé vers la page de connexion...",
+        "loginNow": "Se connecter maintenant"
+      },
+      "backToLogin": "Retour à la connexion"
+    },
+    "errors": {
+      "invalidEmail": "Email invalide",
+      "emailRequired": "Email requis",
+      "passwordRequired": "Mot de passe requis",
+      "passwordMinLength": "Au moins 6 caractères",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "firstNameRequired": "Prénom requis",
+      "lastNameRequired": "Nom requis",
+      "phoneRequired": "Téléphone requis",
+      "countryRequired": "Pays de résidence requis",
+      "confirmPasswordRequired": "Confirmation requise",
+      "fillAllFields": "Veuillez remplir tous les champs",
+      "tokenMissing": "Token de réinitialisation manquant",
+      "enterEmail": "Veuillez entrer votre adresse email",
+      "sendLinkError": "Erreur lors de l'envoi du lien",
+      "resetPasswordError": "Erreur lors de la réinitialisation du mot de passe"
+    }
+  },
+  "chat": {
+    "online": "En ligne",
+    "messagePlaceholder": "Écrivez votre message... (Entrée pour envoyer)",
+    "noMessages": "Aucun message pour le moment",
+    "startConversation": "Commencez la conversation en envoyant un message!",
+    "loadMessagesError": "Impossible de charger les messages",
+    "sendMessageError": "Erreur lors de l'envoi du message",
+    "sendInstructions": "Appuyez sur Entrée pour envoyer, Shift+Entrée pour nouvelle ligne",
+    "sendButton": "Envoyer",
+    "sendingButton": "Envoi..."
+  },
+  "messaging": {
+    "title": "Messages",
+    "noConversations": "Aucune conversation pour le moment",
+    "conversationsInfo": "Les conversations apparaîtront ici après la confirmation de vos réservations",
+    "loadConversationsError": "Impossible de charger les conversations"
+  },
+  "bookings": {
+    "title": "Mes réservations",
+    "subtitle": "Gérez toutes vos réservations de voiture",
+    "paymentHistory": "Historique des paiements",
+    "filters": {
+      "all": "Toutes",
+      "pending": "En attente",
+      "toPay": "À payer",
+      "confirmed": "Confirmées",
+      "cancelled": "Annulées"
+    },
+    "status": {
+      "pending": "En attente",
+      "pendingOwner": "Validation propriétaire (24h)",
+      "awaitingOwnerValidation": "Validation propriétaire (24h)",
+      "waitingPayment": "À payer",
+      "awaitingPayment": "En attente de paiement",
+      "confirmed": "Confirmée",
+      "confirmedLabel": "Payée - En attente de livraison",
+      "inProgress": "En cours",
+      "completed": "Terminée",
+      "rejected": "Refusée",
+      "cancelled": "Annulée",
+      "expiredOwner": "Expirée (non validée)",
+      "expiredValidation": "Expirée (validation)",
+      "expiredPayment": "Expirée (paiement)"
+    },
+    "noBookings": "Aucune réservation",
+    "noBookingsDescription": "Vous n'avez pas encore de réservation",
+    "noBookingsFilter": "Aucune réservation",
+    "searchCar": "Rechercher une voiture",
+    "viewDetails": "Voir les détails",
+    "pay": "Payer",
+    "cancel": "Annuler",
+    "cancelBooking": "Annuler la réservation",
+    "confirmCancel": "Êtes-vous sûr de vouloir annuler cette réservation?",
+    "cancelSuccess": "Réservation annulée avec succès",
+    "cancelError": "Erreur lors de l'annulation",
+    "loadBookingsError": "Erreur lors du chargement des réservations",
+    "bookingConfirmed": "Réservation confirmée ! Redirection vers le paiement...",
+    "bookingDetailsUpdated": "Détails de réservation mis à jour",
+    "pagination": {
+      "showing": "Affichage",
+      "of": "sur",
+      "bookings": "réservations",
+      "previous": "Précédent",
+      "next": "Suivant"
+    },
+    "details": {
+      "title": "Détails de la réservation",
+      "loadError": "Erreur lors du chargement de la réservation",
+      "confirmSuccess": "Réservation confirmée!",
+      "confirmError": "Erreur lors de la confirmation",
+      "rejectConfirm": "Êtes-vous sûr de vouloir refuser cette réservation?",
+      "rejectSuccess": "Réservation refusée",
+      "rejectError": "Erreur lors du refus",
+      "cancelConfirm": "Êtes-vous sûr de vouloir annuler cette réservation?",
+      "cancelSuccess": "Réservation annulée",
+      "cancelError": "Erreur lors de l'annulation",
+      "codeInvalidFormat": "Format de code invalide. Format attendu: ABC-123-XYZ",
+      "codeValidated": "Code validé! Le véhicule est maintenant en cours de location.",
+      "codeInvalid": "Code invalide",
+      "invoiceDownloaded": "Facture téléchargée avec succès",
+      "invoiceError": "Erreur lors du téléchargement de la facture",
+      "invoiceNotGenerated": "La facture n'a pas encore été générée",
+      "messagingError": "Erreur lors de l'ouverture de la messagerie",
+      "reviewSuccess": "Avis publié avec succès!",
+      "deadlineExpired": "Le délai est expiré. La réservation sera automatiquement annulée.",
+      "timer": {
+        "timeRemaining": "Temps restant",
+        "awaitingValidation": "En attente de validation",
+        "deadlineExpiring": "Le délai expire bientôt",
+        "acceptOrReject": "Accepter ou refuser",
+        "ownerWillRespond": "Le propriétaire va répondre",
+        "finalizePayment": "Finalisez votre paiement"
+      },
+      "vehicle": "Véhicule",
+      "transmission": "Transmission",
+      "fuel": "Carburant",
+      "seats": "Places",
+      "location": "Localisation",
+      "notSpecified": "Non spécifiée",
+      "bookingInfo": "Informations de réservation",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "duration": "Durée",
+      "pricePerDay": "Prix par jour",
+      "pickupLocation": "Lieu de prise en charge",
+      "dropoffLocation": "Lieu de dépôt",
+      "notes": "Notes",
+      "client": "Client",
+      "name": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "owner": "Propriétaire",
+      "contactLocked": "Informations de contact verrouillées",
+      "contactLockedDesc": "Les coordonnées du propriétaire seront disponibles après confirmation et paiement de votre réservation.",
+      "priceSummary": "Récapitulatif des prix",
+      "rentalTotal": "Total location",
+      "ownerRevenue": "Votre revenu",
+      "ownerRevenueDesc": "Montant net après commission FlitCar",
+      "flitcarCommission": "Commission FlitCar",
+      "commissionWithheld": "Retenue sur le paiement client",
+      "commissionWillBeWithheld": "Sera retenue sur le paiement",
+      "totalPrice": "Prix total",
+      "paidViaFlitcar": "Payé via FlitCar - Aucun frais supplémentaire",
+      "toPayViaFlitcar": "À payer via FlitCar - Montant complet",
+      "depositRefundable": "Caution (remboursable)",
+      "depositInfo": "La caution sera payée lors de la récupération du véhicule et restituée à la fin de la location",
+      "deliveryCode": "Code de livraison",
+      "deliveryCodeDesc": "Communiquez ce code au propriétaire lors de la récupération du véhicule",
+      "copyCode": "Copier le code",
+      "codeCopied": "Code copié!",
+      "validateDelivery": "Valider la livraison",
+      "deliveryValidation": "Validation de la livraison",
+      "deliveryNotAvailable": "Livraison non disponible",
+      "deliveryAvailableFrom": "La validation du code de livraison sera possible à partir du",
+      "deliveryCodePrompt": "Demandez au client son code de livraison et saisissez-le ci-dessous pour confirmer la remise du véhicule",
+      "codePlaceholder": "ABC-123-XYZ",
+      "validate": "Valider",
+      "validating": "Validation...",
+      "codeFormat": "Format attendu: 3 lettres - 3 chiffres - 3 lettres (ex: ABC-123-XYZ)",
+      "actions": "Actions",
+      "acceptBooking": "Accepter la réservation",
+      "reject": "Refuser",
+      "proceedToPayment": "Procéder au paiement",
+      "messaging": "Messagerie",
+      "message": "Message",
+      "leaveReview": "Laisser un avis",
+      "review": "Avis",
+      "downloadInvoice": "Télécharger facture",
+      "downloadStatement": "Télécharger relevé",
+      "downloading": "Téléchargement...",
+      "invoice": "Facture",
+      "noActionsAvailable": "Aucune action disponible pour cette réservation",
+      "accept": "Accepter",
+      "payNow": "Payer maintenant"
+    }
+  },
+  "booking": {
+    "pageTitle": "Demande de réservation",
+    "title": "Confirmation de réservation",
+    "summary": "Récapitulatif",
+    "steps": {
+      "dates": "Dates",
+      "info": "Infos",
+      "recap": "Récap"
+    },
+    "driverInfo": {
+      "title": "Informations du conducteur",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "age": "Âge",
+      "driverLicense": "Permis de conduire"
+    },
+    "carDetails": "Détails du véhicule",
+    "rentalPeriod": "Période de location",
+    "from": "Du",
+    "to": "Au",
+    "days": "jours",
+    "duration": "Durée",
+    "pickupLocation": "Lieu de prise en charge",
+    "dropoffLocation": "Lieu de retour",
+    "pickupLocationShort": "Récupération",
+    "dropoffLocationShort": "Retour",
+    "airport": "Aéroport",
+    "city": "Ville",
+    "notDefined": "Non défini",
+    "additionalInfo": "Ajoutez des informations complémentaires...",
+    "yourInformation": "Vos informations",
+    "fullName": "Nom complet",
+    "email": "Email",
+    "phone": "Téléphone",
+    "age": "Âge",
+    "phoneRequired": "Téléphone *",
+    "ageRequired": "Âge *",
+    "ageMin": "Vous devez avoir au moins 18 ans",
+    "bookingDetails": "Détails de la réservation",
+    "rentalDates": "Dates de location",
+    "start": "Début",
+    "end": "Fin",
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "pickupAndDropoff": "Lieux de récupération et retour",
+    "deliveryFee": "Frais de livraison",
+    "deliveryFeeAirport": "Frais de livraison (aéroport)",
+    "notesOptional": "Notes (optionnel)",
+    "modify": "Modifier",
+    "cancelEdit": "Annuler",
+    "saveChanges": "Enregistrer les modifications",
+    "selectYourDates": "Sélectionnez vos dates",
+    "chooseLocation": "Choisir un lieu",
+    "choosePickupLocation": "Lieu de récupération",
+    "chooseDropoffLocation": "Lieu de retour",
+    "startTime": "Heure départ",
+    "endTime": "Heure retour",
+    "important": "Important",
+    "importantNotice": "Cette demande sera envoyée au propriétaire pour validation. Vous pourrez effectuer le paiement une fois que le propriétaire aura confirmé votre réservation.",
+    "nextStep": "Prochaine étape",
+    "ownerMustConfirm": "Le propriétaire doit confirmer votre réservation. Vous recevrez une notification et pourrez procéder au paiement une fois la réservation confirmée.",
+    "viewMyBookings": "Voir mes réservations",
+    "requestSent": "Demande envoyée!",
+    "requestSentDescription": "Votre demande de réservation a été envoyée au propriétaire.",
+    "priceBreakdown": {
+      "title": "Détail du paiement",
+      "dailyRate": "Tarif journalier",
+      "numberOfDays": "Nombre de jours",
+      "subtotal": "Sous-total",
+      "serviceFee": "Frais de service",
+      "insurance": "Assurance",
+      "total": "Total",
+      "totalToPay": "Total à payer"
+    },
+    "deposit": {
+      "title": "Caution (séparée du paiement)",
+      "amount": "Caution",
+      "note": "La caution sera payée séparément lors de la récupération du véhicule et restituée intégralement à la fin de la location.",
+      "noteShort": "Note",
+      "paymentAfterConfirmation": "Le paiement sera effectué après la confirmation du propriétaire."
+    },
+    "termsAndConditions": {
+      "title": "Conditions générales",
+      "accept": "J'accepte les",
+      "terms": "conditions générales",
+      "and": "et la",
+      "privacy": "politique de confidentialité",
+      "minimumAge": "Âge minimum : 21 ans",
+      "validLicense": "Permis de conduire valide requis",
+      "deposit": "Caution remboursable à la fin de la location"
+    },
+    "confirmButton": "Réserver maintenant",
+    "cancelButton": "Annuler",
+    "success": "Réservation confirmée avec succès !",
+    "error": "Erreur lors de la réservation",
+    "processing": "Traitement en cours...",
+    "errors": {
+      "selectDates": "Veuillez sélectionner les dates",
+      "selectLocations": "Veuillez sélectionner les lieux de prise en charge et de retour",
+      "selectPickupAndDropoff": "Veuillez sélectionner les lieux de récupération et de retour",
+      "acceptTerms": "Veuillez accepter les conditions générales",
+      "enterPhone": "Veuillez saisir votre numéro de téléphone",
+      "ageRange": "L'âge doit être entre 18 et 100 ans",
+      "minRentalDays": "La durée minimale de location est de {{days}} jour(s)",
+      "unavailableDates": "La période sélectionnée inclut des dates indisponibles. Veuillez choisir d'autres dates.",
+      "unavailableDatesModify": "La période sélectionnée inclut des dates indisponibles. Veuillez modifier vos dates.",
+      "loadLocationsError": "Erreur lors du chargement des lieux de prise en charge",
+      "viewPendingBooking": "Voir la réservation en attente",
+      "viewOverlappingBooking": "Voir la réservation existante",
+      "viewActiveBooking": "Voir la réservation active"
+    },
+    "mode": {
+      "instantBooking": "Mode 1: Réservation instantanée",
+      "manualValidation": "Mode 2: Validation manuelle"
+    }
+  },
+  "favorites": {
+    "title": "Mes Favoris",
+    "count": "Vous avez {count} véhicule(s) dans vos favoris",
+    "noFavorites": "Aucun favori pour le moment",
+    "noFavoritesTitle": "Aucun favori",
+    "noFavoritesDescription": "Commencez à ajouter des véhicules à vos favoris en cliquant sur le cœur",
+    "loadFavoritesError": "Erreur lors du chargement des favoris",
+    "addedToFavorites": "Ajouté aux favoris",
+    "removedFromFavorites": "Retiré des favoris",
+    "loginRequired": "Veuillez vous connecter pour ajouter des favoris",
+    "addToFavorites": "Ajouter aux favoris",
+    "removeFromFavorites": "Retirer des favoris"
+  },
+  "carDetails": {
+    "title": "Détails du véhicule",
+    "specifications": "Caractéristiques",
+    "features": "Équipements",
+    "seats": "Places",
+    "transmission": "Transmission",
+    "automatic": "Automatique",
+    "manual": "Manuelle",
+    "fuelType": "Carburant",
+    "gasoline": "Essence",
+    "diesel": "Diesel",
+    "electric": "Électrique",
+    "hybrid": "Hybride",
+    "color": "Couleur",
+    "black": "Noir",
+    "white": "Blanc",
+    "gray": "Gris",
+    "silver": "Argent",
+    "blue": "Bleu",
+    "red": "Rouge",
+    "defaultDescription": "Profitez de cette magnifique {{brand}} {{model}} {{year}}. Voiture bien entretenue, confortable et parfaitement adaptée pour vos déplacements. Idéale pour découvrir la ville ou partir en escapade. Assurance tous risques incluse.",
+    "bookNow": "Réserver maintenant",
+    "owner": "Propriétaire",
+    "ownerFlitCar": "Propriétaire FlitCar",
+    "ownerInfo": {
+      "title": "Propriétaire",
+      "rating": "évaluation",
+      "cars": "voitures",
+      "rentals": "locations",
+      "memberSince": "Membre depuis",
+      "contact": "Contacter",
+      "viewProfile": "Voir le profil",
+      "contactLocked": "Informations de contact verrouillées",
+      "contactLockedDesc": "Les coordonnées du propriétaire seront disponibles après confirmation et paiement de votre réservation.",
+      "aboutOwner": "À propos du propriétaire",
+      "aboutOwnerText": "Tous nos propriétaires sont vérifiés et leurs voitures sont régulièrement entretenues pour garantir votre sécurité et votre confort.",
+      "ownerSince": "Propriétaire depuis"
+    },
+    "reviews": "Avis",
+    "location": "Localisation",
+    "availability": "Disponibilité",
+    "pricing": "Tarification",
+    "model": "Modèle",
+    "year": "Année",
+    "cruiseControl": "Régulateur de vitesse",
+    "cleanliness": "Propreté",
+    "vehicleCondition": "État véhicule",
+    "reviewsExamples": {
+      "excellent": "Excellente expérience ! La voiture était impeccable et le propriétaire très réactif.",
+      "veryGood": "Très bonne voiture, confortable pour un long trajet. Je recommande !"
+    },
+    "bookingOptions": {
+      "title": "Options de réservation",
+      "instantBooking": "Réservation instantanée",
+      "instantBookingDesc": "Confirmation immédiate sans validation du propriétaire",
+      "requestBooking": "Demande de réservation",
+      "requestBookingDesc": "Nécessite la validation du propriétaire"
+    },
+    "selectDates": "Sélectionnez vos dates",
+    "totalPrice": "Prix total",
+    "bookNow": "Réserver maintenant",
+    "loginToBook": "Se connecter pour réserver",
+    "searchAirport": "Rechercher un aéroport...",
+    "pickupAndReturn": "Prise en charge et restitution du véhicule",
+    "viewPickupInstructions": "Voir les instructions relatives à la prise en charge",
+    "viewReturnInstructions": "Voir les instructions relatives à la restitution",
+    "pickupReminder": "Vous devrez récupérer votre voiture à {{time}}",
+    "modifyBookingDetails": "Modifier les détails de réservation",
+    "searchLocationPlaceholder": "Rechercher un lieu...",
+    "alerts": {
+      "selectDates": "Veuillez sélectionner des dates de location",
+      "selectAirport": "Veuillez sélectionner un aéroport"
+    }
+  },
+  "refundPolicy": {
+    "title": "Politique de remboursement",
+    "compactTitle": "Politique d'annulation",
+    "freeCancellation": "Annulation gratuite jusqu'à 7 jours avant la réservation.",
+    "fullRefund": "Remboursement à 100%",
+    "partialRefund": "Remboursement partiel selon les conditions",
+    "moreThan7Days": "Annulation plus de 7 jours avant",
+    "refundPercent": "Remboursement de {percent}% du montant payé",
+    "between3And7Days": "Annulation entre 3 et 7 jours avant",
+    "lessThan3Days": "Annulation moins de 3 jours avant",
+    "tip": "💡 Astuce : Pour annuler votre réservation, rendez-vous dans \"Mes réservations\" et cliquez sur \"Annuler la réservation\". Le remboursement sera automatique selon la politique ci-dessus."
+  },
+  "support": {
+    "title": "Support",
+    "ticketCreated": "Ticket créé avec succès ! Notre équipe vous répondra bientôt.",
+    "createTicketError": "Erreur lors de la création du ticket",
+    "categories": {
+      "booking": "Réservation",
+      "vehicle": "Véhicule",
+      "payment": "Paiement",
+      "other": "Autre"
+    },
+    "status": {
+      "open": "Ouvert",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    },
+    "describeProblem": "Décrivez votre problème ou question..."
+  },
+  "reviews": {
+    "addReview": "Ajouter un avis",
+    "selectRating": "Veuillez sélectionner une note",
+    "veryDissatisfied": "Très insatisfait",
+    "verySatisfied": "Très satisfait",
+    "shareFeedback": "Partagez votre expérience avec cette voiture..."
+  },
+  "profile": {
+    "title": "Mon profil",
+    "subtitle": "Gérez vos informations personnelles",
+    "personalInfo": {
+      "title": "Informations personnelles",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "dateOfBirth": "Date de naissance",
+      "address": "Adresse"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "language": "Langue",
+      "notifications": "Notifications",
+      "newsletter": "Newsletter"
+    },
+    "password": {
+      "title": "Mot de passe",
+      "change": "Changer le mot de passe",
+      "current": "Mot de passe actuel",
+      "new": "Nouveau mot de passe",
+      "confirm": "Confirmer le mot de passe",
+      "securityTip": "Pour des raisons de sécurité, nous vous recommandons de changer votre mot de passe régulièrement.",
+      "changeSuccess": "Mot de passe modifié avec succès",
+      "mismatch": "Les mots de passe ne correspondent pas",
+      "minLength": "Le mot de passe doit contenir au moins 6 caractères"
+    },
+    "accountInfo": {
+      "title": "Informations du compte",
+      "accountType": "Type de compte",
+      "memberSince": "Membre depuis",
+      "accountStatus": "Statut du compte",
+      "active": "Actif"
+    },
+    "photo": {
+      "change": "Changer la photo",
+      "uploading": "Upload en cours...",
+      "uploadSuccess": "Photo de profil mise à jour avec succès!",
+      "uploadError": "Erreur lors de l'upload de la photo"
+    },
+    "updateSuccess": "Profil mis à jour avec succès",
+    "updateError": "Erreur lors de la mise à jour du profil",
+    "fillRequired": "Veuillez remplir tous les champs obligatoires",
+    "fillAllFields": "Veuillez remplir tous les champs",
+    "saving": "Enregistrement..."
+  },
+  "footer": {
+    "search": "Rechercher",
+    "becomeOwner": "Devenir propriétaire",
+    "about": "À propos",
+    "contact": "Contact",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Confidentialité",
+    "tagline": "Votre voiture, partout au Maroc.",
+    "company": {
+      "title": "FlitCar",
+      "about": "À propos",
+      "careers": "Carrières",
+      "press": "Presse",
+      "blog": "Blog"
+    },
+    "support": {
+      "title": "Support",
+      "help": "Centre d'aide",
+      "contact": "Contact",
+      "faq": "FAQ"
+    },
+    "legal": {
+      "title": "Légal",
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité",
+      "cookies": "Politique des cookies"
+    },
+    "social": {
+      "title": "Suivez-nous"
+    },
+    "copyright": "© {{year}} FlitCar. Votre voiture, partout au Maroc."
+  },
+  "errors": {
+    "notFound": "Page non trouvée",
+    "serverError": "Erreur serveur",
+    "networkError": "Erreur de connexion",
+    "tryAgain": "Réessayer",
+    "loadError": "Erreur lors du chargement"
+  },
+  "search": {
+    "title": "Rechercher une voiture",
+    "results": "résultats",
+    "noResults": "Aucun véhicule trouvé",
+    "noResultsDescription": "Essayez de modifier vos critères de recherche",
+    "sortBy": "Trier par",
+    "sortOptions": {
+      "recommended": "Recommandé",
+      "priceLowHigh": "Prix croissant",
+      "priceHighLow": "Prix décroissant",
+      "newest": "Plus récent"
+    },
+    "filters": {
+      "title": "Filtres",
+      "priceRange": "Fourchette de prix",
+      "pricePerDay": "Prix par jour",
+      "minPrice": "Prix min",
+      "maxPrice": "Prix max",
+      "transmission": "Transmission",
+      "transmissionAll": "Toutes",
+      "transmissionAutomatic": "Automatique",
+      "transmissionManual": "Manuelle",
+      "fuelType": "Carburant",
+      "fuelAll": "Tous",
+      "fuelGasoline": "Essence",
+      "fuelDiesel": "Diesel",
+      "fuelElectric": "Électrique",
+      "fuelHybrid": "Hybride",
+      "seats": "Places",
+      "seatsAll": "Toutes",
+      "seatsMin": "{{count}}+ places",
+      "carType": "Type de véhicule",
+      "typeAll": "Tous",
+      "typeSedan": "Berline",
+      "typeSuv": "SUV",
+      "typeHatchback": "Compacte",
+      "typeMinivan": "Monospace",
+      "typeLuxury": "Luxe",
+      "typeSport": "Sport",
+      "features": "Équipements",
+      "featureAirConditioning": "Climatisation",
+      "featureGPS": "GPS",
+      "featureBluetooth": "Bluetooth",
+      "featureUSB": "Port USB",
+      "featureBackupCamera": "Caméra de recul",
+      "featureCruiseControl": "Régulateur de vitesse",
+      "reset": "Réinitialiser",
+      "apply": "Appliquer"
+    }
+  },
+  "carCard": {
+    "perDay": "par jour",
+    "seats": "places",
+    "automatic": "Automatique",
+    "manual": "Manuelle",
+    "gasoline": "Essence",
+    "diesel": "Diesel",
+    "electric": "Électrique",
+    "hybrid": "Hybride",
+    "viewDetails": "Voir les détails",
+    "instantBooking": "Réservation instantanée",
+    "verified": "Vérifié"
+  },
+  "countries": {
+    "algeria": "Algérie",
+    "selectCountry": "Sélectionnez votre pays"
+  },
+  "languages": {
+    "french": "Français",
+    "english": "English",
+    "arabic": "العربية"
+  },
+  "datePicker": {
+    "title": "Choisissez vos dates de location",
+    "confirm": "Sélectionner des dates"
+  },
+  "settings": {
+    "languageRegion": "Langue & Région",
+    "language": "Langue",
+    "languageDesc": "Choisir la langue de l'application",
+    "currency": "Devise",
+    "currencyDesc": "Devise d'affichage des prix",
+    "notifications": "Notifications",
+    "pushNotifications": "Notifications push",
+    "pushNotificationsDesc": "Recevoir les alertes importantes",
+    "selectLanguage": "Choisir la langue",
+    "selectCurrency": "Choisir la devise",
+    "exchangeRates": "Taux actuels"
+  }
+}
