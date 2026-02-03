@@ -28,6 +28,10 @@ import SupportPage from './pages/Support/SupportPage';
 import LogsPage from './pages/Logs/LogsPage';
 import AdminUsersPage from './pages/AdminManagement/AdminUsersPage';
 import AdminFormPage from './pages/AdminManagement/AdminFormPage';
+import ConsentConfigPage from './pages/Consent/ConsentConfigPage';
+import ConsentDashboardPage from './pages/Consent/ConsentDashboardPage';
+import ConsentLogsPage from './pages/Consent/ConsentLogsPage';
+import ConsentAuditPage from './pages/Consent/ConsentAuditPage';
 
 // Protected Route Component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -68,6 +72,10 @@ function App() {
           <Route path="/support" element={<ProtectedRoute><SupportPage /></ProtectedRoute>} />
           <Route path="/logs" element={<ProtectedRoute><LogsPage /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+          <Route path="/consent/config" element={<ProtectedRoute><ConsentConfigPage /></ProtectedRoute>} />
+          <Route path="/consent/dashboard" element={<ProtectedRoute><ConsentDashboardPage /></ProtectedRoute>} />
+          <Route path="/consent/logs" element={<ProtectedRoute><ConsentLogsPage /></ProtectedRoute>} />
+          <Route path="/consent/audit" element={<ProtectedRoute><ConsentAuditPage /></ProtectedRoute>} />
           <Route path="/admin-management" element={<ProtectedRoute><AdminUsersPage /></ProtectedRoute>} />
           <Route path="/admin-management/add" element={<ProtectedRoute><AdminFormPage /></ProtectedRoute>} />
           <Route path="/admin-management/edit/:id" element={<ProtectedRoute><AdminFormPage /></ProtectedRoute>} />

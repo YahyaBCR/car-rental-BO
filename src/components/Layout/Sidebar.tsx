@@ -15,7 +15,8 @@ import {
   FaTicketAlt,
   FaFileAlt,
   FaUserShield,
-  FaUser
+  FaUser,
+  FaShieldAlt
 } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 
@@ -39,13 +40,14 @@ const Sidebar: React.FC = () => {
     { name: 'Aéroports', path: '/airports', icon: <FaPlane /> },
     { name: 'Villes', path: '/cities', icon: <FaCity /> },
     { name: 'Analytics', path: '/analytics', icon: <FaChartLine /> },
+    { name: 'Consentement', path: '/consent/config', icon: <FaShieldAlt /> },
     { name: 'Support', path: '/support', icon: <FaTicketAlt /> },
     { name: 'Logs', path: '/logs', icon: <FaFileAlt /> },
     { name: 'Administrateurs', path: '/admin-management', icon: <FaUserShield /> },
-    { name: 'Paramètres', path: '/settings', icon: <FaCog /> },
+    { name: 'Param\u00e8tres', path: '/settings', icon: <FaCog /> },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => location.pathname === path || (path.includes('/consent') && location.pathname.startsWith('/consent'));
 
   return (
     <div className="h-screen w-64 bg-white shadow-lg fixed left-0 top-0 overflow-y-auto">
