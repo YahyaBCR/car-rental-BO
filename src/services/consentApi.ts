@@ -12,6 +12,8 @@ export interface ConsentConfig {
   functional_enabled: boolean;
   analytics_provider: string;
   marketing_provider: string;
+  analytics_settings_json: Record<string, any>;
+  marketing_settings_json: Record<string, any>;
   ttl_functional: number;
   ttl_analytics: number;
   ttl_marketing: number;

@@ -32,6 +32,8 @@ const ConsentConfigPage: React.FC = () => {
   const [functionalEnabled, setFunctionalEnabled] = useState(true);
   const [analyticsProvider, setAnalyticsProvider] = useState('none');
   const [marketingProvider, setMarketingProvider] = useState('none');
+  const [analyticsSettings, setAnalyticsSettings] = useState<Record<string, any>>({});
+  const [marketingSettings, setMarketingSettings] = useState<Record<string, any>>({});
   const [ttlFunctional, setTtlFunctional] = useState(365);
   const [ttlAnalytics, setTtlAnalytics] = useState(365);
   const [ttlMarketing, setTtlMarketing] = useState(365);
@@ -61,6 +63,8 @@ const ConsentConfigPage: React.FC = () => {
         setFunctionalEnabled(activeConfig.functional_enabled);
         setAnalyticsProvider(activeConfig.analytics_provider);
         setMarketingProvider(activeConfig.marketing_provider);
+        setAnalyticsSettings(activeConfig.analytics_settings_json || {});
+        setMarketingSettings(activeConfig.marketing_settings_json || {});
         setTtlFunctional(activeConfig.ttl_functional);
         setTtlAnalytics(activeConfig.ttl_analytics);
         setTtlMarketing(activeConfig.ttl_marketing);
@@ -79,6 +83,11 @@ const ConsentConfigPage: React.FC = () => {
   };
 
   const handleSave = async () => {
+    // Validate: if Analytics ON + GA4, measurementId is required
+    if (analyticsEnabled && analyticsProvider === 'GA4' && !analyticsSettings.measurementId) {
+      toast.error('Le Measurement ID est obligatoire quand Analytics est actif avec GA4');
+      return;
+    }
     try {
       setSaving(true);
       await consentApi.createConfig({
@@ -93,6 +102,8 @@ const ConsentConfigPage: React.FC = () => {
         banner_texts: bannerTexts,
         cookie_policy_version: cookiePolicyVersion,
         privacy_policy_version: privacyPolicyVersion,
+        analytics_settings_json: analyticsSettings,
+        marketing_settings_json: marketingSettings,
       } as any);
       toast.success('Configuration enregistr\u00e9e (nouvelle version cr\u00e9\u00e9e)');
       loadData();
@@ -192,6 +203,23 @@ const ConsentConfigPage: React.FC = () => {
                 </select>
               </div>
             </div>
+
+            {/* GA4 Measurement ID */}
+            {analyticsProvider === 'GA4' && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Measurement ID {analyticsEnabled && <span className="text-red-500">*</span>}
+                </label>
+                <input
+                  type="text"
+                  value={analyticsSettings.measurementId || ''}
+                  onChange={(e) => setAnalyticsSettings(prev => ({ ...prev, measurementId: e.target.value }))}
+                  placeholder="G-XXXXXXXXXX"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2"
+                />
+                <p className="text-xs text-gray-500 mt-1">Identifiant de mesure Google Analytics 4</p>
+              </div>
+            )}
           </div>
 
           {/* TTL */}
