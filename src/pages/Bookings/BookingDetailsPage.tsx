@@ -7,6 +7,7 @@ import { FlitCarColors, BOOKING_STATUS_LABELS } from '../../utils/constants';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import toast from 'react-hot-toast';
 import { differenceInDays } from 'date-fns';
+import PhoneDisplay from '../../components/PhoneDisplay';
 
 interface BookingDetailsType {
   id: string;
@@ -43,6 +44,11 @@ interface BookingDetailsType {
   dropoff_airport_fee?: number;
   car_id: string;
   client_id: string;
+  is_guest_booking?: boolean;
+  guest_first_name?: string;
+  guest_last_name?: string;
+  guest_email?: string;
+  guest_phone?: string;
 }
 
 const BookingDetailsPage: React.FC = () => {
@@ -323,43 +329,48 @@ const BookingDetailsPage: React.FC = () => {
             {/* Client Info */}
             <div className="card sticky top-6">
               <div className="p-6 border-b border-gray-200">
-                <h3 className="text-lg font-bold text-textPrimary">Client</h3>
+                <h3 className="text-lg font-bold text-textPrimary flex items-center gap-2">
+                  Client
+                  {booking.is_guest_booking && (
+                    <span className="bg-orange-100 text-orange-700 text-xs font-semibold px-2 py-0.5 rounded-full">Invité</span>
+                  )}
+                </h3>
               </div>
               <div className="p-6 space-y-4">
                 <div className="flex items-center gap-3">
                   <div
                     className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold"
-                    style={{ backgroundColor: FlitCarColors.primary }}
+                    style={{ backgroundColor: booking.is_guest_booking ? '#f59e0b' : FlitCarColors.primary }}
                   >
-                    {booking.client_first_name.charAt(0)}{booking.client_last_name.charAt(0)}
+                    {(booking.guest_first_name || booking.client_first_name || '').charAt(0)}{(booking.guest_last_name || booking.client_last_name || '').charAt(0)}
                   </div>
                   <div>
                     <p className="text-sm font-medium text-textPrimary">
-                      {booking.client_first_name} {booking.client_last_name}
+                      {booking.guest_first_name || booking.client_first_name} {booking.guest_last_name || booking.client_last_name}
                     </p>
-                    <span className="badge badge-info text-xs">Client</span>
+                    <span className="badge badge-info text-xs">{booking.is_guest_booking ? 'Invité' : 'Client'}</span>
                   </div>
                 </div>
 
                 <div className="space-y-3 pt-4 border-t border-gray-200">
                   <div>
                     <p className="text-xs text-textSecondary">Email</p>
-                    <p className="text-sm text-textPrimary break-all">{booking.client_email}</p>
+                    <p className="text-sm text-textPrimary break-all">{booking.guest_email || booking.client_email}</p>
                   </div>
-                  {booking.client_phone && (
-                    <div>
-                      <p className="text-xs text-textSecondary">Téléphone</p>
-                      <p className="text-sm text-textPrimary">{booking.client_phone}</p>
-                    </div>
-                  )}
+                  <div>
+                    <p className="text-xs text-textSecondary mb-1">Téléphone</p>
+                    <PhoneDisplay phone={booking.guest_phone || booking.client_phone} />
+                  </div>
                 </div>
 
-                <button
-                  onClick={() => navigate(`/users/${booking.client_id}`)}
-                  className="btn-primary w-full mt-4"
-                >
-                  Voir le profil
-                </button>
+                {!booking.is_guest_booking && (
+                  <button
+                    onClick={() => navigate(`/users/${booking.client_id}`)}
+                    className="btn-primary w-full mt-4"
+                  >
+                    Voir le profil
+                  </button>
+                )}
               </div>
             </div>
 
@@ -389,12 +400,10 @@ const BookingDetailsPage: React.FC = () => {
                     <p className="text-xs text-textSecondary">Email</p>
                     <p className="text-sm text-textPrimary break-all">{booking.owner_email}</p>
                   </div>
-                  {booking.owner_phone && (
-                    <div>
-                      <p className="text-xs text-textSecondary">Téléphone</p>
-                      <p className="text-sm text-textPrimary">{booking.owner_phone}</p>
-                    </div>
-                  )}
+                  <div>
+                    <p className="text-xs text-textSecondary mb-1">Téléphone</p>
+                    <PhoneDisplay phone={booking.owner_phone} />
+                  </div>
                 </div>
 
                 <button

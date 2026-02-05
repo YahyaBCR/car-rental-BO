@@ -352,22 +352,22 @@ const SettingsPage: React.FC = () => {
           </div>
         )}
 
-        {/* Tabs */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-1">
-          <div className="flex space-x-1 overflow-x-auto">
+        {/* Tabs - Grid Layout */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-2">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-medium whitespace-nowrap transition-all ${
+                className={`flex items-center justify-center space-x-2 px-3 py-2.5 rounded-lg font-medium transition-all ${
                   activeTab === tab.id
-                    ? 'text-white shadow-sm'
-                    : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                    ? 'text-white shadow-md'
+                    : 'text-gray-600 hover:text-gray-800 hover:bg-gray-100 border border-gray-200'
                 }`}
                 style={{ backgroundColor: activeTab === tab.id ? FlitCarColors.primary : undefined }}
               >
-                {tab.icon}
-                <span>{tab.label}</span>
+                <span className="text-lg">{tab.icon}</span>
+                <span className="text-sm">{tab.label}</span>
               </button>
             ))}
           </div>
