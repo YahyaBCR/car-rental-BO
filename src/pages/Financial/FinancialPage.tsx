@@ -144,7 +144,7 @@ const FinancialPage: React.FC = () => {
                   <tbody className="divide-y divide-gray-200">
                     {transactions.map((tx: any) => (
                       <tr key={tx.id} className="hover:bg-gray-50">
-                        <td className="px-4 py-3 text-sm text-textSecondary">{formatDate(tx.created_at)}</td>
+                        <td className="px-4 py-3 text-sm text-textSecondary">{formatDate(tx.created_at || tx.start_date)}</td>
                         <td className="px-4 py-3 text-sm text-textPrimary">{tx.car_name}</td>
                         <td className="px-4 py-3 text-sm text-textSecondary">{tx.client_name}</td>
                         <td className="px-4 py-3 text-sm font-semibold text-textPrimary">{formatCurrency(tx.total_price)}</td>
