@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaEnvelope, FaPhone, FaCalendar, FaUser, FaCar, FaShoppingCart, FaPlane, FaCity, FaBan, FaLock, FaUnlock } from 'react-icons/fa';
+import { FaArrowLeft, FaEnvelope, FaPhone, FaCalendar, FaUser, FaCar, FaShoppingCart, FaPlane, FaCity, FaBan, FaLock, FaUnlock, FaEdit, FaBuilding, FaMapMarkerAlt, FaGlobe, FaIdCard, FaFileAlt } from 'react-icons/fa';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import usersApi from '../../services/usersApi';
+import { UpdateUserData } from '../../services/usersApi';
 import { FlitCarColors } from '../../utils/constants';
 import { formatCurrency, formatDate } from '../../utils/formatters';
 import toast from 'react-hot-toast';
@@ -15,6 +16,11 @@ interface UserDetails {
     last_name: string;
     phone: string;
     role: string;
+    ice?: string;
+    rc?: string;
+    company_address?: string;
+    company_city?: string;
+    country?: string;
     is_blocked?: boolean;
     blocked_reason?: string;
     blocked_at?: string;
@@ -41,6 +47,9 @@ const UserDetailsPage: React.FC = () => {
   const [showBlockModal, setShowBlockModal] = useState(false);
   const [selectedReason, setSelectedReason] = useState('');
   const [blocking, setBlocking] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editForm, setEditForm] = useState<UpdateUserData>({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     loadUserDetails();
@@ -95,6 +104,39 @@ const UserDetailsPage: React.FC = () => {
       toast.error('Erreur lors du déblocage');
     } finally {
       setBlocking(false);
+    }
+  };
+
+  const openEditModal = () => {
+    if (!userDetails) return;
+    const { user } = userDetails;
+    setEditForm({
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email,
+      phone: user.phone || '',
+      ice: user.ice || '',
+      rc: user.rc || '',
+      company_address: user.company_address || '',
+      company_city: user.company_city || '',
+      country: user.country || '',
+    });
+    setShowEditModal(true);
+  };
+
+  const handleSaveUser = async () => {
+    try {
+      setSaving(true);
+      await usersApi.updateUser(userId!, editForm);
+      toast.success('Utilisateur mis à jour avec succès');
+      setShowEditModal(false);
+      await loadUserDetails();
+    } catch (error: any) {
+      console.error('Error updating user:', error);
+      const message = error?.response?.data?.message || 'Erreur lors de la mise à jour';
+      toast.error(message);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -197,6 +239,14 @@ const UserDetailsPage: React.FC = () => {
           {/* Owner-specific actions */}
           {user.role === 'owner' && (
             <div className="flex items-center gap-3">
+              <button
+                onClick={openEditModal}
+                className="px-6 py-2 rounded-lg font-semibold text-white transition-colors flex items-center gap-2"
+                style={{ backgroundColor: FlitCarColors.primary }}
+              >
+                <FaEdit /> Modifier
+              </button>
+
               <button
                 onClick={() => navigate(`/users/${user.id}/airports`)}
                 className="px-6 py-2 rounded-lg font-semibold text-white transition-colors flex items-center gap-2"
@@ -323,6 +373,71 @@ const UserDetailsPage: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Company Info for Owners */}
+        {user.role === 'owner' && (
+          <div className="card">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center gap-3">
+                <FaBuilding className="text-xl" style={{ color: FlitCarColors.primary }} />
+                <h2 className="text-xl font-bold text-textPrimary">Informations société</h2>
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <FaIdCard className="text-textSecondary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">ICE</p>
+                    <p className="text-sm font-medium text-textPrimary">{user.ice || 'Non renseigné'}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <FaFileAlt className="text-textSecondary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">RC</p>
+                    <p className="text-sm font-medium text-textPrimary">{user.rc || 'Non renseigné'}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <FaMapMarkerAlt className="text-textSecondary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">Adresse société</p>
+                    <p className="text-sm font-medium text-textPrimary">{user.company_address || 'Non renseigné'}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <FaCity className="text-textSecondary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">Ville société</p>
+                    <p className="text-sm font-medium text-textPrimary">{user.company_city || 'Non renseigné'}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <FaGlobe className="text-textSecondary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">Pays</p>
+                    <p className="text-sm font-medium text-textPrimary">{user.country || 'Non renseigné'}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Client Bookings */}
         {user.role === 'client' && (
@@ -496,6 +611,143 @@ const UserDetailsPage: React.FC = () => {
                   className="px-6 py-2 rounded-lg font-semibold bg-red-600 hover:bg-red-700 text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {blocking ? 'Blocage...' : 'Bloquer'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Edit User Modal */}
+        {showEditModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+              <div className="p-6 border-b border-gray-200">
+                <h2 className="text-2xl font-bold text-textPrimary flex items-center gap-3">
+                  <FaEdit style={{ color: FlitCarColors.primary }} />
+                  Modifier l'utilisateur
+                </h2>
+              </div>
+
+              <div className="p-6 space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-textSecondary mb-1">Prénom</label>
+                    <input
+                      type="text"
+                      value={editForm.first_name || ''}
+                      onChange={(e) => setEditForm({ ...editForm, first_name: e.target.value })}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-textSecondary mb-1">Nom</label>
+                    <input
+                      type="text"
+                      value={editForm.last_name || ''}
+                      onChange={(e) => setEditForm({ ...editForm, last_name: e.target.value })}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-textSecondary mb-1">Email</label>
+                    <input
+                      type="email"
+                      value={editForm.email || ''}
+                      onChange={(e) => setEditForm({ ...editForm, email: e.target.value })}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-textSecondary mb-1">Téléphone</label>
+                    <input
+                      type="text"
+                      value={editForm.phone || ''}
+                      onChange={(e) => setEditForm({ ...editForm, phone: e.target.value })}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                    />
+                  </div>
+                </div>
+
+                {user.role === 'owner' && (
+                  <>
+                    <hr className="my-4 border-gray-200" />
+                    <h3 className="text-lg font-semibold text-textPrimary flex items-center gap-2">
+                      <FaBuilding style={{ color: FlitCarColors.primary }} />
+                      Informations société
+                    </h3>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">ICE</label>
+                        <input
+                          type="text"
+                          value={editForm.ice || ''}
+                          onChange={(e) => setEditForm({ ...editForm, ice: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">RC</label>
+                        <input
+                          type="text"
+                          value={editForm.rc || ''}
+                          onChange={(e) => setEditForm({ ...editForm, rc: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-textSecondary mb-1">Adresse société</label>
+                      <input
+                        type="text"
+                        value={editForm.company_address || ''}
+                        onChange={(e) => setEditForm({ ...editForm, company_address: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">Ville société</label>
+                        <input
+                          type="text"
+                          value={editForm.company_city || ''}
+                          onChange={(e) => setEditForm({ ...editForm, company_city: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">Pays</label>
+                        <input
+                          type="text"
+                          value={editForm.country || ''}
+                          onChange={(e) => setEditForm({ ...editForm, country: e.target.value })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              <div className="p-6 border-t border-gray-200 flex items-center justify-end gap-3">
+                <button
+                  onClick={() => setShowEditModal(false)}
+                  disabled={saving}
+                  className="btn-secondary"
+                >
+                  Annuler
+                </button>
+                <button
+                  onClick={handleSaveUser}
+                  disabled={saving}
+                  className="px-6 py-2 rounded-lg font-semibold text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ backgroundColor: FlitCarColors.primary }}
+                >
+                  {saving ? 'Enregistrement...' : 'Enregistrer'}
                 </button>
               </div>
             </div>

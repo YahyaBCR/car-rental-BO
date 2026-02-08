@@ -8,6 +8,14 @@ export interface User {
   phone: string;
   role: UserRole;
   is_active: boolean;
+  is_blocked?: boolean;
+  blocked_reason?: string;
+  blocked_at?: string;
+  ice?: string;
+  rc?: string;
+  company_address?: string;
+  company_city?: string;
+  country?: string;
   created_at: string;
   updated_at?: string;
   avatar_url?: string;

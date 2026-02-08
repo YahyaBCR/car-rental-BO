@@ -28,6 +28,18 @@ export interface CreateOwnerData {
   company_city: string;
 }
 
+export interface UpdateUserData {
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  phone?: string;
+  ice?: string;
+  rc?: string;
+  company_address?: string;
+  company_city?: string;
+  country?: string;
+}
+
 const usersApi = {
   getUsers: async (params: UsersListParams): Promise<UsersListResponse> => {
     const queryParams = new URLSearchParams();
@@ -62,6 +74,11 @@ const usersApi = {
 
   unblockOwner: async (userId: string) => {
     const response = await apiClient.post(`/admin/users/${userId}/unblock`);
+    return response.data;
+  },
+
+  updateUser: async (userId: string, data: UpdateUserData) => {
+    const response = await apiClient.put(`/admin/users/${userId}`, data);
     return response.data;
   },
 };
