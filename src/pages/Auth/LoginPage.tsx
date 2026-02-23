@@ -30,9 +30,9 @@ const LoginPage: React.FC = () => {
         password,
       });
 
-      const { token, user } = response.data;
+      const { token, user, refreshToken } = response.data;
 
-      dispatch(loginSuccess({ user, token }));
+      dispatch(loginSuccess({ user, token, refreshToken }));
       toast.success(`Bienvenue ${user.first_name}!`);
       navigate('/dashboard');
     } catch (error: any) {

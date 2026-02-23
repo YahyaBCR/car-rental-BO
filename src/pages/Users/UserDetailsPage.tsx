@@ -720,11 +720,13 @@ const UserDetailsPage: React.FC = () => {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-textSecondary mb-1">Pays</label>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">Pays (code ISO : MA, FR…)</label>
                         <input
                           type="text"
                           value={editForm.country || ''}
-                          onChange={(e) => setEditForm({ ...editForm, country: e.target.value })}
+                          onChange={(e) => setEditForm({ ...editForm, country: e.target.value.toUpperCase().slice(0, 2) })}
+                          maxLength={2}
+                          placeholder="MA"
                           className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
                         />
                       </div>
