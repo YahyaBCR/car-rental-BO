@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import settingsApi, { SystemSetting, GroupedSettings, BulkUpdateSetting } from '../../services/settingsApi';
-import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaEnvelope, FaChartLine, FaDollarSign } from 'react-icons/fa';
+import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaEnvelope, FaChartLine, FaDollarSign, FaPaperPlane } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 import CurrencySettings from './CurrencySettings';
 
@@ -13,6 +13,8 @@ const SettingsPage: React.FC = () => {
   const [settings, setSettings] = useState<GroupedSettings>({});
   const [hasChanges, setHasChanges] = useState(false);
   const [pendingChanges, setPendingChanges] = useState<BulkUpdateSetting[]>([]);
+  const [testEmailAddress, setTestEmailAddress] = useState('');
+  const [testingEmail, setTestingEmail] = useState(false);
 
   const tabs = [
     { id: 'payment', label: 'Paiement', icon: <FaCreditCard /> },
@@ -44,6 +46,26 @@ const SettingsPage: React.FC = () => {
       toast.error('Erreur lors du chargement des paramètres');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleTestEmail = async () => {
+    if (!testEmailAddress) {
+      toast.error('Veuillez saisir une adresse email');
+      return;
+    }
+    setTestingEmail(true);
+    try {
+      const result = await settingsApi.testEmail(testEmailAddress);
+      if (result.success) {
+        toast.success(`Email de test envoyé à ${testEmailAddress}`);
+      } else {
+        toast.error(result.message || 'Échec de l\'envoi');
+      }
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message || 'Erreur lors de l\'envoi du mail de test');
+    } finally {
+      setTestingEmail(false);
     }
   };
 
@@ -375,6 +397,36 @@ const SettingsPage: React.FC = () => {
 
         {/* Settings Content */}
         <div className="space-y-4">
+          {activeTab === 'email' && (
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="text-base font-semibold text-gray-800 mb-1 flex items-center gap-2">
+                <FaPaperPlane className="text-green-500" />
+                Tester la configuration email
+              </h3>
+              <p className="text-sm text-gray-500 mb-4">
+                Envoyez un email de test pour vérifier que votre configuration SMTP fonctionne correctement.
+              </p>
+              <div className="flex gap-3">
+                <input
+                  type="email"
+                  value={testEmailAddress}
+                  onChange={(e) => setTestEmailAddress(e.target.value)}
+                  placeholder="votre@email.com"
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
+                  onKeyDown={(e) => e.key === 'Enter' && handleTestEmail()}
+                />
+                <button
+                  onClick={handleTestEmail}
+                  disabled={testingEmail}
+                  className="flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white text-sm font-medium rounded-lg transition-colors"
+                >
+                  <FaPaperPlane />
+                  {testingEmail ? 'Envoi...' : 'Envoyer le test'}
+                </button>
+              </div>
+            </div>
+          )}
+
           {activeTab === 'currency' ? (
             <CurrencySettings />
           ) : currentSettings.length === 0 ? (
