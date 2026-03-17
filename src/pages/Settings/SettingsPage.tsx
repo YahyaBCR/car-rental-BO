@@ -55,9 +55,9 @@ const SettingsPage: React.FC = () => {
     setLoadingAudit(true);
     try {
       const result = await settingsApi.smtpAudit();
-      setSmtpAudit(result.smtp);
+      setSmtpAudit(result); // store full result (active_provider + resend + smtp)
     } catch (error: any) {
-      toast.error(error?.response?.data?.error || 'Erreur audit SMTP');
+      toast.error(error?.response?.data?.error || 'Erreur audit email');
     } finally {
       setLoadingAudit(false);
     }
@@ -455,42 +455,55 @@ const SettingsPage: React.FC = () => {
                   </button>
                 </div>
                 {smtpAudit && (
-                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 text-xs font-mono space-y-1">
-                    <div className="flex gap-2">
-                      <span className="text-gray-500 w-32">Host</span>
-                      <span className="text-gray-900 font-semibold">{smtpAudit.host || '—'}</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="text-gray-500 w-32">Port</span>
-                      <span className={smtpAudit.port === 465 ? 'text-red-600 font-bold' : 'text-green-600 font-bold'}>
-                        {smtpAudit.port} {smtpAudit.port === 465 ? '⚠️ (bloqué sur Render)' : '✅'}
+                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 text-xs font-mono space-y-2">
+                    {/* Active provider badge */}
+                    <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
+                      <span className="text-gray-500">Provider actif :</span>
+                      <span className={`px-2 py-0.5 rounded font-bold text-white ${
+                        smtpAudit.active_provider === 'resend' ? 'bg-green-600' :
+                        smtpAudit.active_provider === 'smtp' ? 'bg-blue-600' : 'bg-red-500'
+                      }`}>
+                        {smtpAudit.active_provider === 'resend' ? '✅ Resend (HTTP)' :
+                         smtpAudit.active_provider === 'smtp' ? '📡 SMTP' : '❌ Non configuré'}
                       </span>
                     </div>
-                    <div className="flex gap-2">
-                      <span className="text-gray-500 w-32">Secure (SSL)</span>
-                      <span className="text-gray-900">{String(smtpAudit.secure)}</span>
+
+                    {/* Resend */}
+                    <div className="space-y-1">
+                      <p className="text-gray-400 uppercase tracking-wide text-[10px]">Resend API</p>
+                      <div className="flex gap-2">
+                        <span className="text-gray-500 w-32">Clé API</span>
+                        <span className={smtpAudit.resend?.configured ? 'text-green-600' : 'text-red-500'}>
+                          {smtpAudit.resend?.configured
+                            ? `✅ ${smtpAudit.resend.api_key_prefix}`
+                            : '❌ Non définie (ajouter resend_api_key dans les settings email)'}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      <span className="text-gray-500 w-32">User</span>
-                      <span className="text-gray-900">{smtpAudit.user || '—'}</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="text-gray-500 w-32">From</span>
-                      <span className="text-gray-900">{smtpAudit.from_email || '—'}</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="text-gray-500 w-32">Mot de passe</span>
-                      <span className={smtpAudit.password_set ? 'text-green-600' : 'text-red-600'}>
-                        {smtpAudit.password_set ? '✅ défini' : '❌ manquant'}
-                      </span>
-                    </div>
-                    <div className="flex gap-2 pt-2 border-t border-gray-200 text-gray-400">
-                      <span className="w-32">DB raw port</span>
-                      <span>{smtpAudit.raw_from_db?.smtp_port ?? '—'}</span>
-                    </div>
-                    <div className="flex gap-2">
-                      <span className="w-32">DB raw secure</span>
-                      <span>{String(smtpAudit.raw_from_db?.smtp_secure ?? '—')}</span>
+
+                    {/* SMTP */}
+                    <div className="space-y-1 pt-1 border-t border-gray-200">
+                      <p className="text-gray-400 uppercase tracking-wide text-[10px]">SMTP (fallback)</p>
+                      <div className="flex gap-2">
+                        <span className="text-gray-500 w-32">Host</span>
+                        <span className="text-gray-900">{smtpAudit.smtp?.host || '—'}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-gray-500 w-32">Port</span>
+                        <span className={smtpAudit.smtp?.port === 465 ? 'text-red-600 font-bold' : 'text-gray-900'}>
+                          {smtpAudit.smtp?.port} {smtpAudit.smtp?.warning ? '⚠️ ' + smtpAudit.smtp.warning : ''}
+                        </span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-gray-500 w-32">User</span>
+                        <span className="text-gray-900">{smtpAudit.smtp?.user || '—'}</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <span className="text-gray-500 w-32">Mot de passe</span>
+                        <span className={smtpAudit.smtp?.password_set ? 'text-green-600' : 'text-red-600'}>
+                          {smtpAudit.smtp?.password_set ? '✅ défini' : '❌ manquant'}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 )}
