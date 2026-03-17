@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import settingsApi, { SystemSetting, GroupedSettings, BulkUpdateSetting } from '../../services/settingsApi';
-import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaEnvelope, FaChartLine, FaDollarSign, FaPaperPlane } from 'react-icons/fa';
+import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaEnvelope, FaChartLine, FaDollarSign, FaPaperPlane, FaSearch } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 import CurrencySettings from './CurrencySettings';
 
@@ -15,6 +15,8 @@ const SettingsPage: React.FC = () => {
   const [pendingChanges, setPendingChanges] = useState<BulkUpdateSetting[]>([]);
   const [testEmailAddress, setTestEmailAddress] = useState('');
   const [testingEmail, setTestingEmail] = useState(false);
+  const [smtpAudit, setSmtpAudit] = useState<any>(null);
+  const [loadingAudit, setLoadingAudit] = useState(false);
 
   const tabs = [
     { id: 'payment', label: 'Paiement', icon: <FaCreditCard /> },
@@ -46,6 +48,18 @@ const SettingsPage: React.FC = () => {
       toast.error('Erreur lors du chargement des paramètres');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSmtpAudit = async () => {
+    setLoadingAudit(true);
+    try {
+      const result = await settingsApi.smtpAudit();
+      setSmtpAudit(result.smtp);
+    } catch (error: any) {
+      toast.error(error?.response?.data?.error || 'Erreur audit SMTP');
+    } finally {
+      setLoadingAudit(false);
     }
   };
 
@@ -423,6 +437,63 @@ const SettingsPage: React.FC = () => {
                   <FaPaperPlane />
                   {testingEmail ? 'Envoi...' : 'Envoyer le test'}
                 </button>
+              </div>
+
+              {/* SMTP Audit */}
+              <div className="mt-6 pt-5 border-t border-gray-200">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                    <FaSearch className="text-blue-500" />
+                    Config SMTP active (depuis la DB)
+                  </span>
+                  <button
+                    onClick={handleSmtpAudit}
+                    disabled={loadingAudit}
+                    className="flex items-center gap-2 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-xs font-medium rounded-lg transition-colors"
+                  >
+                    {loadingAudit ? 'Lecture...' : 'Auditer la config'}
+                  </button>
+                </div>
+                {smtpAudit && (
+                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 text-xs font-mono space-y-1">
+                    <div className="flex gap-2">
+                      <span className="text-gray-500 w-32">Host</span>
+                      <span className="text-gray-900 font-semibold">{smtpAudit.host || '—'}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-gray-500 w-32">Port</span>
+                      <span className={smtpAudit.port === 465 ? 'text-red-600 font-bold' : 'text-green-600 font-bold'}>
+                        {smtpAudit.port} {smtpAudit.port === 465 ? '⚠️ (bloqué sur Render)' : '✅'}
+                      </span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-gray-500 w-32">Secure (SSL)</span>
+                      <span className="text-gray-900">{String(smtpAudit.secure)}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-gray-500 w-32">User</span>
+                      <span className="text-gray-900">{smtpAudit.user || '—'}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-gray-500 w-32">From</span>
+                      <span className="text-gray-900">{smtpAudit.from_email || '—'}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="text-gray-500 w-32">Mot de passe</span>
+                      <span className={smtpAudit.password_set ? 'text-green-600' : 'text-red-600'}>
+                        {smtpAudit.password_set ? '✅ défini' : '❌ manquant'}
+                      </span>
+                    </div>
+                    <div className="flex gap-2 pt-2 border-t border-gray-200 text-gray-400">
+                      <span className="w-32">DB raw port</span>
+                      <span>{smtpAudit.raw_from_db?.smtp_port ?? '—'}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      <span className="w-32">DB raw secure</span>
+                      <span>{String(smtpAudit.raw_from_db?.smtp_secure ?? '—')}</span>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           )}
