@@ -387,8 +387,9 @@ const UserDetailsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Company Info for Owners */}
+        {/* Company Info + Conditions Commerciales for Owners */}
         {user.role === 'owner' && (
+          <>
           <div className="card">
             <div className="p-6 border-b border-gray-200">
               <div className="flex items-center gap-3">
@@ -451,57 +452,56 @@ const UserDetailsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* ── US#1 : Conditions Commerciales (owners only) ── */}
-          {user.role === 'owner' && (
-            <div className="card">
-              <div className="p-6 border-b border-gray-200">
-                <div className="flex items-center gap-3">
-                  <FaFileAlt className="text-xl" style={{ color: FlitCarColors.primary }} />
-                  <h2 className="text-xl font-bold text-textPrimary">Conditions Commerciales</h2>
+          {/* ── US#1 : Conditions Commerciales ── */}
+          <div className="card">
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex items-center gap-3">
+                <FaFileAlt className="text-xl" style={{ color: FlitCarColors.primary }} />
+                <h2 className="text-xl font-bold text-textPrimary">Conditions Commerciales</h2>
+              </div>
+            </div>
+            <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                  <span className="text-lg">{user.is_free_cancellation ? '✅' : '❌'}</span>
+                </div>
+                <div>
+                  <p className="text-xs text-textSecondary">Annulation gratuite</p>
+                  <p className="text-sm font-medium text-textPrimary">
+                    {user.is_free_cancellation ? 'Activée' : 'Désactivée'}
+                  </p>
                 </div>
               </div>
-              <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
-                    <span className="text-lg">{user.is_free_cancellation ? '✅' : '❌'}</span>
-                  </div>
-                  <div>
-                    <p className="text-xs text-textSecondary">Annulation gratuite</p>
-                    <p className="text-sm font-medium text-textPrimary">
-                      {user.is_free_cancellation ? 'Activée' : 'Désactivée'}
-                    </p>
-                  </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                  <span className="text-lg">⏱</span>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
-                    <span className="text-lg">⏱</span>
-                  </div>
-                  <div>
-                    <p className="text-xs text-textSecondary">Délai d'annulation</p>
-                    <p className="text-sm font-medium text-textPrimary">
-                      {user.cancellation_delay_hours != null
-                        ? `${user.cancellation_delay_hours}h avant prise en charge`
-                        : 'Non défini'}
-                    </p>
-                  </div>
+                <div>
+                  <p className="text-xs text-textSecondary">Délai d'annulation</p>
+                  <p className="text-sm font-medium text-textPrimary">
+                    {user.cancellation_delay_hours != null
+                      ? `${user.cancellation_delay_hours}h avant prise en charge`
+                      : 'Non défini'}
+                  </p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
-                    <span className="text-lg">🛡</span>
-                  </div>
-                  <div>
-                    <p className="text-xs text-textSecondary">Type d'assurance</p>
-                    <p className="text-sm font-medium text-textPrimary">
-                      {INSURANCE_OPTIONS.find(o => o.key === user.insurance_type_key)?.label
-                        ?? user.insurance_type_key
-                        ?? 'Non défini'}
-                    </p>
-                  </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                  <span className="text-lg">🛡</span>
+                </div>
+                <div>
+                  <p className="text-xs text-textSecondary">Type d'assurance</p>
+                  <p className="text-sm font-medium text-textPrimary">
+                    {INSURANCE_OPTIONS.find(o => o.key === user.insurance_type_key)?.label
+                      ?? user.insurance_type_key
+                      ?? 'Non défini'}
+                  </p>
                 </div>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+          </>
+        )}
 
         {/* Client Bookings */}
         {user.role === 'client' && (
