@@ -38,6 +38,10 @@ export interface UpdateUserData {
   company_address?: string;
   company_city?: string;
   country?: string;
+  // US#1 – Commercial conditions
+  is_free_cancellation?: boolean;
+  cancellation_delay_hours?: number;
+  insurance_type_key?: string;
 }
 
 const usersApi = {

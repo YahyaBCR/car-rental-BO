@@ -24,12 +24,22 @@ interface UserDetails {
     is_blocked?: boolean;
     blocked_reason?: string;
     blocked_at?: string;
+    // US#1 – Commercial conditions
+    is_free_cancellation?: boolean;
+    cancellation_delay_hours?: number;
+    insurance_type_key?: string;
     created_at: string;
     updated_at: string;
   };
   bookings: any[];
   cars: any[];
 }
+
+const INSURANCE_OPTIONS = [
+  { key: 'insurance.basic',        label: 'Basique (responsabilité civile)' },
+  { key: 'insurance.full',         label: 'Tous risques' },
+  { key: 'insurance.full_premium', label: 'Tous risques Premium (0 franchise)' },
+];
 
 const BLOCKING_REASONS = [
   'Non-respect des conditions',
@@ -120,6 +130,9 @@ const UserDetailsPage: React.FC = () => {
       company_address: user.company_address || '',
       company_city: user.company_city || '',
       country: user.country || '',
+      is_free_cancellation: user.is_free_cancellation ?? false,
+      cancellation_delay_hours: user.cancellation_delay_hours ?? 48,
+      insurance_type_key: user.insurance_type_key ?? 'insurance.basic',
     });
     setShowEditModal(true);
   };
@@ -437,7 +450,58 @@ const UserDetailsPage: React.FC = () => {
               </div>
             </div>
           </div>
-        )}
+
+          {/* ── US#1 : Conditions Commerciales (owners only) ── */}
+          {user.role === 'owner' && (
+            <div className="card">
+              <div className="p-6 border-b border-gray-200">
+                <div className="flex items-center gap-3">
+                  <FaFileAlt className="text-xl" style={{ color: FlitCarColors.primary }} />
+                  <h2 className="text-xl font-bold text-textPrimary">Conditions Commerciales</h2>
+                </div>
+              </div>
+              <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <span className="text-lg">{user.is_free_cancellation ? '✅' : '❌'}</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">Annulation gratuite</p>
+                    <p className="text-sm font-medium text-textPrimary">
+                      {user.is_free_cancellation ? 'Activée' : 'Désactivée'}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <span className="text-lg">⏱</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">Délai d'annulation</p>
+                    <p className="text-sm font-medium text-textPrimary">
+                      {user.cancellation_delay_hours != null
+                        ? `${user.cancellation_delay_hours}h avant prise en charge`
+                        : 'Non défini'}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                    <span className="text-lg">🛡</span>
+                  </div>
+                  <div>
+                    <p className="text-xs text-textSecondary">Type d'assurance</p>
+                    <p className="text-sm font-medium text-textPrimary">
+                      {INSURANCE_OPTIONS.find(o => o.key === user.insurance_type_key)?.label
+                        ?? user.insurance_type_key
+                        ?? 'Non défini'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Client Bookings */}
         {user.role === 'client' && (
@@ -731,6 +795,63 @@ const UserDetailsPage: React.FC = () => {
                         />
                       </div>
                     </div>
+
+                    {/* ── US#1 : Conditions Commerciales ── */}
+                    <hr className="my-4 border-gray-200" />
+                    <h3 className="text-lg font-semibold text-textPrimary flex items-center gap-2">
+                      <FaFileAlt style={{ color: FlitCarColors.primary }} />
+                      Conditions Commerciales
+                    </h3>
+
+                    {/* Assurance */}
+                    <div>
+                      <label className="block text-sm font-medium text-textSecondary mb-1">
+                        Type d'assurance <span className="text-xs text-textMuted">(clé i18n)</span>
+                      </label>
+                      <select
+                        value={editForm.insurance_type_key || 'insurance.basic'}
+                        onChange={(e) => setEditForm({ ...editForm, insurance_type_key: e.target.value })}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                      >
+                        {INSURANCE_OPTIONS.map(opt => (
+                          <option key={opt.key} value={opt.key}>{opt.label}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Annulation */}
+                    <div className="flex items-center gap-3 py-2">
+                      <input
+                        id="freeCancellationToggle"
+                        type="checkbox"
+                        checked={editForm.is_free_cancellation ?? false}
+                        onChange={(e) => setEditForm({ ...editForm, is_free_cancellation: e.target.checked })}
+                        className="w-5 h-5 accent-primary cursor-pointer"
+                      />
+                      <label htmlFor="freeCancellationToggle" className="text-sm font-medium text-textPrimary cursor-pointer">
+                        Annulation gratuite activée
+                      </label>
+                    </div>
+
+                    {editForm.is_free_cancellation && (
+                      <div>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">
+                          Délai d'annulation gratuite <span className="text-error">*</span>
+                          <span className="text-xs text-textMuted ml-1">(heures avant prise en charge)</span>
+                        </label>
+                        <input
+                          type="number"
+                          min={1}
+                          max={720}
+                          value={editForm.cancellation_delay_hours ?? 48}
+                          onChange={(e) => setEditForm({ ...editForm, cancellation_delay_hours: parseInt(e.target.value) || 48 })}
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                        <p className="text-xs text-textMuted mt-1">
+                          Ex: 48 = annulation gratuite jusqu'à 48h avant le début de la location
+                        </p>
+                      </div>
+                    )}
                   </>
                 )}
               </div>
