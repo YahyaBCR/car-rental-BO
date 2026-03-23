@@ -42,6 +42,9 @@ export interface UpdateUserData {
   is_free_cancellation?: boolean;
   cancellation_delay_hours?: number;
   insurance_type_key?: string;
+  // Working hours
+  is_24_7?: boolean;
+  working_hours?: Array<{ day: number; open: string; close: string }> | null;
 }
 
 const usersApi = {

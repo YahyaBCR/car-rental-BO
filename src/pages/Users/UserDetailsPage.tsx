@@ -28,6 +28,9 @@ interface UserDetails {
     is_free_cancellation?: boolean;
     cancellation_delay_hours?: number;
     insurance_type_key?: string;
+    // Working hours
+    is_24_7?: boolean;
+    working_hours?: Array<{ day: number; open: string; close: string }> | null;
     created_at: string;
     updated_at: string;
   };
@@ -48,6 +51,95 @@ const BLOCKING_REASONS = [
   'Comportement inapproprié',
   'Autres',
 ];
+
+const DEFAULT_WORKING_HOURS: Array<{ day: number; open: string; close: string }> = [
+  { day: 1, open: '08:00', close: '20:00' },
+  { day: 2, open: '08:00', close: '20:00' },
+  { day: 3, open: '08:00', close: '20:00' },
+  { day: 4, open: '08:00', close: '20:00' },
+  { day: 5, open: '08:00', close: '20:00' },
+];
+
+const DAY_LABELS = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
+
+interface WorkingHoursEditorProps {
+  value: Array<{ day: number; open: string; close: string }>;
+  onChange: (hours: Array<{ day: number; open: string; close: string }>) => void;
+}
+
+const WorkingHoursEditor: React.FC<WorkingHoursEditorProps> = ({ value, onChange }) => {
+  const getSlot = (day: number) => value.find(s => s.day === day);
+
+  const toggleDay = (day: number, enabled: boolean) => {
+    if (enabled) {
+      const existing = getSlot(day);
+      if (!existing) {
+        const newSlots = [...value, { day, open: '08:00', close: '20:00' }].sort((a, b) => a.day - b.day);
+        onChange(newSlots);
+      }
+    } else {
+      onChange(value.filter(s => s.day !== day));
+    }
+  };
+
+  const updateTime = (day: number, field: 'open' | 'close', time: string) => {
+    onChange(value.map(s => s.day === day ? { ...s, [field]: time } : s));
+  };
+
+  return (
+    <div className="border border-gray-200 rounded-lg overflow-hidden">
+      <table className="w-full text-sm">
+        <thead className="bg-gray-50">
+          <tr>
+            <th className="px-3 py-2 text-left text-xs font-medium text-textSecondary uppercase w-16">Jour</th>
+            <th className="px-3 py-2 text-left text-xs font-medium text-textSecondary uppercase w-20">Ouvert</th>
+            <th className="px-3 py-2 text-left text-xs font-medium text-textSecondary uppercase">Ouverture</th>
+            <th className="px-3 py-2 text-left text-xs font-medium text-textSecondary uppercase">Fermeture</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-100">
+          {DAY_LABELS.map((label, day) => {
+            const slot = getSlot(day);
+            const enabled = !!slot;
+            return (
+              <tr key={day} className={enabled ? 'bg-white' : 'bg-gray-50'}>
+                <td className="px-3 py-2 font-medium text-textPrimary">{label}</td>
+                <td className="px-3 py-2">
+                  <input
+                    type="checkbox"
+                    checked={enabled}
+                    onChange={e => toggleDay(day, e.target.checked)}
+                    className="w-4 h-4 cursor-pointer"
+                  />
+                </td>
+                <td className="px-3 py-2">
+                  {enabled && (
+                    <input
+                      type="time"
+                      value={slot.open}
+                      onChange={e => updateTime(day, 'open', e.target.value)}
+                      className="px-2 py-1 border border-gray-300 rounded text-sm"
+                    />
+                  )}
+                </td>
+                <td className="px-3 py-2">
+                  {enabled && (
+                    <input
+                      type="time"
+                      value={slot.close}
+                      onChange={e => updateTime(day, 'close', e.target.value)}
+                      className="px-2 py-1 border border-gray-300 rounded text-sm"
+                    />
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 const UserDetailsPage: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -133,6 +225,8 @@ const UserDetailsPage: React.FC = () => {
       is_free_cancellation: user.is_free_cancellation ?? false,
       cancellation_delay_hours: user.cancellation_delay_hours ?? 48,
       insurance_type_key: user.insurance_type_key ?? 'insurance.basic',
+      is_24_7: user.is_24_7 ?? true,
+      working_hours: user.working_hours ?? DEFAULT_WORKING_HOURS,
     });
     setShowEditModal(true);
   };
@@ -498,6 +592,23 @@ const UserDetailsPage: React.FC = () => {
                   </p>
                 </div>
               </div>
+              <div className="flex items-center gap-3 md:col-span-3">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-100">
+                  <span className="text-lg">🕐</span>
+                </div>
+                <div>
+                  <p className="text-xs text-textSecondary">Disponibilité</p>
+                  <p className="text-sm font-medium text-textPrimary">
+                    {(user.is_24_7 ?? true)
+                      ? '24/7'
+                      : user.working_hours && user.working_hours.length > 0
+                        ? user.working_hours
+                            .map(s => `${DAY_LABELS[s.day]} ${s.open}-${s.close}`)
+                            .join(', ')
+                        : 'Horaires non définis'}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
           </>
@@ -852,6 +963,30 @@ const UserDetailsPage: React.FC = () => {
                         </p>
                       </div>
                     )}
+
+                    {/* Working Hours */}
+                    <hr className="my-4 border-gray-200" />
+                    <h3 className="text-lg font-semibold text-textPrimary flex items-center gap-2">
+                      <span>🕐</span>
+                      Horaires de disponibilité
+                    </h3>
+                    <div>
+                      <label className="flex items-center gap-2 cursor-pointer mb-3">
+                        <input
+                          type="checkbox"
+                          checked={editForm.is_24_7 ?? true}
+                          onChange={e => setEditForm({ ...editForm, is_24_7: e.target.checked })}
+                          className="w-5 h-5 cursor-pointer"
+                        />
+                        <span className="font-semibold text-sm">Disponible 24h/24 – 7j/7</span>
+                      </label>
+                      {!editForm.is_24_7 && (
+                        <WorkingHoursEditor
+                          value={editForm.working_hours ?? DEFAULT_WORKING_HOURS}
+                          onChange={hours => setEditForm({ ...editForm, working_hours: hours })}
+                        />
+                      )}
+                    </div>
                   </>
                 )}
               </div>
