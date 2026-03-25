@@ -73,6 +73,11 @@ const settingsApi = {
     const response = await apiClient.post('/admin/commission/calculate', { amount });
     return response.data;
   },
+
+  testEmail: async (to: string): Promise<{ success: boolean; message: string }> => {
+    const response = await apiClient.post('/admin/settings/test-email', { to });
+    return response.data;
+  },
 };
 
 export default settingsApi;

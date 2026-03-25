@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import settingsApi, { SystemSetting, GroupedSettings, BulkUpdateSetting } from '../../services/settingsApi';
-import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaClock, FaBullhorn, FaFileContract, FaServer, FaChartLine, FaDollarSign } from 'react-icons/fa';
+import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaClock, FaBullhorn, FaFileContract, FaServer, FaChartLine, FaDollarSign, FaEnvelope, FaPaperPlane } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 import CurrencySettings from './CurrencySettings';
 
@@ -13,6 +13,8 @@ const SettingsPage: React.FC = () => {
   const [settings, setSettings] = useState<GroupedSettings>({});
   const [hasChanges, setHasChanges] = useState(false);
   const [pendingChanges, setPendingChanges] = useState<BulkUpdateSetting[]>([]);
+  const [testEmailAddress, setTestEmailAddress] = useState('');
+  const [sendingTestEmail, setSendingTestEmail] = useState(false);
 
   const tabs = [
     { id: 'payment', label: 'Paiement', icon: <FaCreditCard /> },
@@ -45,11 +47,16 @@ const SettingsPage: React.FC = () => {
   };
 
   const handleTestEmail = async () => {
-    // Email test removed — SMTP config is now via environment variables
-    return;
+    if (!testEmailAddress) { toast.error('Entrez une adresse email'); return; }
     try {
+      setSendingTestEmail(true);
+      const result = await settingsApi.testEmail(testEmailAddress);
+      if (result.success) toast.success(result.message);
+      else toast.error(result.message);
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Erreur lors de l\'envoi du mail de test');
     } finally {
-      setTestingEmail(false);
+      setSendingTestEmail(false);
     }
   };
 
@@ -399,6 +406,37 @@ const SettingsPage: React.FC = () => {
               <div key={setting.id}>{renderSettingInput(setting)}</div>
             ))
           )}
+        </div>
+
+        {/* Test Email */}
+        <div className="p-5 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="flex items-center gap-2 mb-3">
+            <FaEnvelope className="text-gray-500" />
+            <h2 className="font-semibold text-textPrimary">Test d'envoi d'email</h2>
+          </div>
+          <p className="text-xs text-textSecondary mb-3">
+            Envoie un email de test en utilisant la configuration SMTP des variables d'environnement.
+          </p>
+          <div className="flex gap-3">
+            <input
+              type="email"
+              placeholder="adresse@email.com"
+              value={testEmailAddress}
+              onChange={(e) => setTestEmailAddress(e.target.value)}
+              className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none"
+              onFocus={(e) => e.target.style.boxShadow = `0 0 0 2px ${FlitCarColors.primary}40`}
+              onBlur={(e) => e.target.style.boxShadow = 'none'}
+            />
+            <button
+              onClick={handleTestEmail}
+              disabled={sendingTestEmail}
+              className="flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white rounded-lg transition-opacity hover:opacity-90 disabled:opacity-50"
+              style={{ backgroundColor: FlitCarColors.primary }}
+            >
+              <FaPaperPlane className="w-3.5 h-3.5" />
+              {sendingTestEmail ? 'Envoi...' : 'Envoyer'}
+            </button>
+          </div>
         </div>
 
         {/* Info Banner */}
