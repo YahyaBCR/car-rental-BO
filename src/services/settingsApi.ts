@@ -58,18 +58,6 @@ const settingsApi = {
     return response.data;
   },
 
-  // Send a test email to verify SMTP configuration
-  testEmail: async (email: string): Promise<{ success: boolean; message: string }> => {
-    const response = await apiClient.post('/admin/settings/test-email', { email });
-    return response.data;
-  },
-
-  // Audit current SMTP config read from DB (password masked)
-  smtpAudit: async (): Promise<{ success: boolean; smtp: any }> => {
-    const response = await apiClient.get('/admin/settings/smtp-audit');
-    return response.data;
-  },
-
   // Legacy commission API (kept for backwards compatibility)
   getCommissionConfig: async () => {
     const response = await apiClient.get('/admin/commission');

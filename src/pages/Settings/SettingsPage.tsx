@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import settingsApi, { SystemSetting, GroupedSettings, BulkUpdateSetting } from '../../services/settingsApi';
-import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaEnvelope, FaChartLine, FaDollarSign, FaPaperPlane, FaSearch } from 'react-icons/fa';
+import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaChartLine, FaDollarSign } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 import CurrencySettings from './CurrencySettings';
 
@@ -13,10 +13,6 @@ const SettingsPage: React.FC = () => {
   const [settings, setSettings] = useState<GroupedSettings>({});
   const [hasChanges, setHasChanges] = useState(false);
   const [pendingChanges, setPendingChanges] = useState<BulkUpdateSetting[]>([]);
-  const [testEmailAddress, setTestEmailAddress] = useState('');
-  const [testingEmail, setTestingEmail] = useState(false);
-  const [smtpAudit, setSmtpAudit] = useState<any>(null);
-  const [loadingAudit, setLoadingAudit] = useState(false);
 
   const tabs = [
     { id: 'payment', label: 'Paiement', icon: <FaCreditCard /> },
@@ -30,7 +26,6 @@ const SettingsPage: React.FC = () => {
     { id: 'marketing', label: 'Marketing', icon: <FaBullhorn /> },
     { id: 'legal', label: 'Légal', icon: <FaFileContract /> },
     { id: 'system', label: 'Système', icon: <FaServer /> },
-    { id: 'email', label: 'Email', icon: <FaEnvelope /> },
     { id: 'analytics', label: 'Analytics', icon: <FaChartLine /> },
   ];
 
@@ -51,33 +46,10 @@ const SettingsPage: React.FC = () => {
     }
   };
 
-  const handleSmtpAudit = async () => {
-    setLoadingAudit(true);
-    try {
-      const result = await settingsApi.smtpAudit();
-      setSmtpAudit(result); // store full result (active_provider + resend + smtp)
-    } catch (error: any) {
-      toast.error(error?.response?.data?.error || 'Erreur audit email');
-    } finally {
-      setLoadingAudit(false);
-    }
-  };
-
   const handleTestEmail = async () => {
-    if (!testEmailAddress) {
-      toast.error('Veuillez saisir une adresse email');
-      return;
-    }
-    setTestingEmail(true);
+    // Email test removed — SMTP config is now via environment variables
+    return;
     try {
-      const result = await settingsApi.testEmail(testEmailAddress);
-      if (result.success) {
-        toast.success(`Email de test envoyé à ${testEmailAddress}`);
-      } else {
-        toast.error(result.message || 'Échec de l\'envoi');
-      }
-    } catch (error: any) {
-      toast.error(error?.response?.data?.message || 'Erreur lors de l\'envoi du mail de test');
     } finally {
       setTestingEmail(false);
     }
@@ -411,105 +383,6 @@ const SettingsPage: React.FC = () => {
 
         {/* Settings Content */}
         <div className="space-y-4">
-          {activeTab === 'email' && (
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-base font-semibold text-gray-800 mb-1 flex items-center gap-2">
-                <FaPaperPlane className="text-green-500" />
-                Tester la configuration email
-              </h3>
-              <p className="text-sm text-gray-500 mb-4">
-                Envoyez un email de test pour vérifier que votre configuration SMTP fonctionne correctement.
-              </p>
-              <div className="flex gap-3">
-                <input
-                  type="email"
-                  value={testEmailAddress}
-                  onChange={(e) => setTestEmailAddress(e.target.value)}
-                  placeholder="votre@email.com"
-                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-400"
-                  onKeyDown={(e) => e.key === 'Enter' && handleTestEmail()}
-                />
-                <button
-                  onClick={handleTestEmail}
-                  disabled={testingEmail}
-                  className="flex items-center gap-2 px-5 py-2 bg-green-600 hover:bg-green-700 disabled:opacity-60 text-white text-sm font-medium rounded-lg transition-colors"
-                >
-                  <FaPaperPlane />
-                  {testingEmail ? 'Envoi...' : 'Envoyer le test'}
-                </button>
-              </div>
-
-              {/* SMTP Audit */}
-              <div className="mt-6 pt-5 border-t border-gray-200">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                    <FaSearch className="text-blue-500" />
-                    Config SMTP active (depuis la DB)
-                  </span>
-                  <button
-                    onClick={handleSmtpAudit}
-                    disabled={loadingAudit}
-                    className="flex items-center gap-2 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-xs font-medium rounded-lg transition-colors"
-                  >
-                    {loadingAudit ? 'Lecture...' : 'Auditer la config'}
-                  </button>
-                </div>
-                {smtpAudit && (
-                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-4 text-xs font-mono space-y-2">
-                    {/* Active provider badge */}
-                    <div className="flex items-center gap-2 pb-2 border-b border-gray-200">
-                      <span className="text-gray-500">Provider actif :</span>
-                      <span className={`px-2 py-0.5 rounded font-bold text-white ${
-                        smtpAudit.active_provider === 'resend' ? 'bg-green-600' :
-                        smtpAudit.active_provider === 'smtp' ? 'bg-blue-600' : 'bg-red-500'
-                      }`}>
-                        {smtpAudit.active_provider === 'resend' ? '✅ Resend (HTTP)' :
-                         smtpAudit.active_provider === 'smtp' ? '📡 SMTP' : '❌ Non configuré'}
-                      </span>
-                    </div>
-
-                    {/* Resend */}
-                    <div className="space-y-1">
-                      <p className="text-gray-400 uppercase tracking-wide text-[10px]">Resend API</p>
-                      <div className="flex gap-2">
-                        <span className="text-gray-500 w-32">Clé API</span>
-                        <span className={smtpAudit.resend?.configured ? 'text-green-600' : 'text-red-500'}>
-                          {smtpAudit.resend?.configured
-                            ? `✅ ${smtpAudit.resend.api_key_prefix}`
-                            : '❌ Non définie (ajouter resend_api_key dans les settings email)'}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* SMTP */}
-                    <div className="space-y-1 pt-1 border-t border-gray-200">
-                      <p className="text-gray-400 uppercase tracking-wide text-[10px]">SMTP (fallback)</p>
-                      <div className="flex gap-2">
-                        <span className="text-gray-500 w-32">Host</span>
-                        <span className="text-gray-900">{smtpAudit.smtp?.host || '—'}</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <span className="text-gray-500 w-32">Port</span>
-                        <span className={smtpAudit.smtp?.port === 465 ? 'text-red-600 font-bold' : 'text-gray-900'}>
-                          {smtpAudit.smtp?.port} {smtpAudit.smtp?.warning ? '⚠️ ' + smtpAudit.smtp.warning : ''}
-                        </span>
-                      </div>
-                      <div className="flex gap-2">
-                        <span className="text-gray-500 w-32">User</span>
-                        <span className="text-gray-900">{smtpAudit.smtp?.user || '—'}</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <span className="text-gray-500 w-32">Mot de passe</span>
-                        <span className={smtpAudit.smtp?.password_set ? 'text-green-600' : 'text-red-600'}>
-                          {smtpAudit.smtp?.password_set ? '✅ défini' : '❌ manquant'}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
 
           {activeTab === 'currency' ? (
             <CurrencySettings />
