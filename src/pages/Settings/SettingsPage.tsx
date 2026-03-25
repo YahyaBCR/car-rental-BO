@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import settingsApi, { SystemSetting, GroupedSettings, BulkUpdateSetting } from '../../services/settingsApi';
-import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaPlane, FaClock, FaUserCheck, FaBullhorn, FaFileContract, FaServer, FaChartLine, FaDollarSign } from 'react-icons/fa';
+import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaClock, FaBullhorn, FaFileContract, FaServer, FaChartLine, FaDollarSign } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 import CurrencySettings from './CurrencySettings';
 
@@ -20,9 +20,7 @@ const SettingsPage: React.FC = () => {
     { id: 'currency', label: 'Devises', icon: <FaDollarSign /> },
     { id: 'notifications', label: 'Notifications', icon: <FaBell /> },
     { id: 'booking', label: 'Réservation', icon: <FaCalendar /> },
-    { id: 'airport', label: 'Aéroports', icon: <FaPlane /> },
     { id: 'availability', label: 'Disponibilité', icon: <FaClock /> },
-    { id: 'verification', label: 'Vérification', icon: <FaUserCheck /> },
     { id: 'marketing', label: 'Marketing', icon: <FaBullhorn /> },
     { id: 'legal', label: 'Légal', icon: <FaFileContract /> },
     { id: 'system', label: 'Système', icon: <FaServer /> },
@@ -325,7 +323,10 @@ const SettingsPage: React.FC = () => {
     );
   }
 
-  const currentSettings = settings[activeTab] || [];
+  const COMMISSION_HIDDEN_KEYS = ['global_rate', 'custom_rates'];
+  const currentSettings = (settings[activeTab] || []).filter(s =>
+    activeTab !== 'commission' || !COMMISSION_HIDDEN_KEYS.includes(s.key)
+  );
 
   return (
     <AdminLayout>
