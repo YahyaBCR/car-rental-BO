@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import settingsApi, { SystemSetting, GroupedSettings, BulkUpdateSetting } from '../../services/settingsApi';
-import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaClock, FaBullhorn, FaFileContract, FaServer, FaChartLine, FaDollarSign, FaEnvelope, FaPaperPlane } from 'react-icons/fa';
+import { FaSave, FaCog, FaCreditCard, FaBell, FaCalendar, FaClock, FaBullhorn, FaFileContract, FaServer, FaChartLine, FaDollarSign, FaEnvelope, FaPaperPlane, FaPlus } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
 import CurrencySettings from './CurrencySettings';
+import ExtrasSettingsTab from './ExtrasSettingsTab';
 
 const SettingsPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -27,6 +28,7 @@ const SettingsPage: React.FC = () => {
     { id: 'legal', label: 'Légal', icon: <FaFileContract /> },
     { id: 'system', label: 'Système', icon: <FaServer /> },
     { id: 'analytics', label: 'Analytics', icon: <FaChartLine /> },
+    { id: 'extras', label: 'Options réservation', icon: <FaPlus /> },
   ];
 
   useEffect(() => {
@@ -392,7 +394,9 @@ const SettingsPage: React.FC = () => {
         {/* Settings Content */}
         <div className="space-y-4">
 
-          {activeTab === 'currency' ? (
+          {activeTab === 'extras' ? (
+            <ExtrasSettingsTab />
+          ) : activeTab === 'currency' ? (
             <CurrencySettings />
           ) : currentSettings.length === 0 ? (
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12">
