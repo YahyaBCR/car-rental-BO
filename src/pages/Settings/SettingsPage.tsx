@@ -277,30 +277,6 @@ const SettingsPage: React.FC = () => {
       );
     }
 
-    if (key === 'age_by_category') {
-      return (
-        <div className="space-y-3">
-          {Object.entries(value || {}).map(([cat, age]) => (
-            <div key={cat}>
-              <label className="block text-sm text-gray-600 mb-1 capitalize">{cat}</label>
-              <div className="flex items-center space-x-2">
-                <input
-                  type="number"
-                  value={age as number}
-                  onChange={(e) => handleSettingChange(category, key, {
-                    ...value,
-                    [cat]: parseInt(e.target.value),
-                  })}
-                  className="w-full px-3 py-2 border rounded-lg"
-                />
-                <span className="text-gray-600">ans</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      );
-    }
-
     // Default JSON editor (textarea)
     return (
       <textarea
