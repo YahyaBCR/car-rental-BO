@@ -31,6 +31,10 @@ interface UserDetails {
     // Working hours
     is_24_7?: boolean;
     working_hours?: Array<{ day: number; open: string; close: string }> | null;
+    // Agency GPS location
+    agency_name?: string | null;
+    agency_lat?: number | null;
+    agency_lng?: number | null;
     created_at: string;
     updated_at: string;
   };
@@ -227,6 +231,9 @@ const UserDetailsPage: React.FC = () => {
       insurance_type_key: user.insurance_type_key ?? 'insurance.basic',
       is_24_7: user.is_24_7 ?? true,
       working_hours: user.working_hours ?? DEFAULT_WORKING_HOURS,
+      agency_name: user.agency_name ?? null,
+      agency_lat: user.agency_lat != null ? String(user.agency_lat) : '',
+      agency_lng: user.agency_lng != null ? String(user.agency_lng) : '',
     });
     setShowEditModal(true);
   };
@@ -543,6 +550,40 @@ const UserDetailsPage: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              {/* GPS localisation agence */}
+              {(user.agency_lat != null && user.agency_lng != null) ? (
+                <div className="mt-6 border-t border-gray-100 pt-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <FaMapMarkerAlt style={{ color: FlitCarColors.primary }} />
+                    <h3 className="text-sm font-semibold text-textPrimary">
+                      Localisation de l'agence
+                      {user.agency_name && <span className="ml-2 font-normal text-textSecondary">— {user.agency_name}</span>}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-textSecondary mb-3">
+                    Lat: {user.agency_lat} / Lng: {user.agency_lng}
+                  </p>
+                  <div className="rounded-xl overflow-hidden border border-gray-200" style={{ height: 200 }}>
+                    <iframe
+                      title="Localisation agence"
+                      src={`https://www.google.com/maps?q=${user.agency_lat},${user.agency_lng}&z=16&output=embed`}
+                      width="100%"
+                      height="200"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div className="mt-6 border-t border-gray-100 pt-4">
+                  <p className="text-xs text-textSecondary flex items-center gap-2">
+                    <FaMapMarkerAlt className="text-gray-400" />
+                    Localisation GPS de l'agence non renseignée
+                  </p>
+                </div>
+              )}
             </div>
           </div>
 
@@ -906,6 +947,53 @@ const UserDetailsPage: React.FC = () => {
                         />
                       </div>
                     </div>
+
+                    {/* ── Localisation GPS ── */}
+                    <hr className="my-4 border-gray-200" />
+                    <h3 className="text-lg font-semibold text-textPrimary flex items-center gap-2">
+                      <FaMapMarkerAlt style={{ color: FlitCarColors.primary }} />
+                      Localisation de l'agence (GPS)
+                    </h3>
+
+                    <div>
+                      <label className="block text-sm font-medium text-textSecondary mb-1">Nom de l'agence</label>
+                      <input
+                        type="text"
+                        value={(editForm as any).agency_name || ''}
+                        onChange={(e) => setEditForm({ ...editForm, agency_name: e.target.value || null })}
+                        placeholder="Ex: Agence Centre-ville"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">Latitude</label>
+                        <input
+                          type="number"
+                          step="any"
+                          value={(editForm as any).agency_lat || ''}
+                          onChange={(e) => setEditForm({ ...editForm, agency_lat: e.target.value })}
+                          placeholder="Ex: 33.5731"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-textSecondary mb-1">Longitude</label>
+                        <input
+                          type="number"
+                          step="any"
+                          value={(editForm as any).agency_lng || ''}
+                          onChange={(e) => setEditForm({ ...editForm, agency_lng: e.target.value })}
+                          placeholder="Ex: -7.5898"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                        />
+                      </div>
+                    </div>
+                    <p className="text-xs text-textSecondary -mt-2">
+                      Coordonnées GPS visibles par le client au moment de la réservation.
+                      Trouvez-les sur <strong>Google Maps</strong> : clic droit → "Plus d'infos sur cet endroit".
+                    </p>
 
                     {/* ── US#1 : Conditions Commerciales ── */}
                     <hr className="my-4 border-gray-200" />

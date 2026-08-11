@@ -45,6 +45,10 @@ export interface UpdateUserData {
   // Working hours
   is_24_7?: boolean;
   working_hours?: Array<{ day: number; open: string; close: string }> | null;
+  // Agency GPS location
+  agency_name?: string | null;
+  agency_lat?: number | string | null;
+  agency_lng?: number | string | null;
 }
 
 const usersApi = {
