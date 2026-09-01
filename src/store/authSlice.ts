@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../types/user.types';
+import { API_URL } from '../config/env';
 
 interface AuthState {
   user: User | null;
@@ -46,8 +47,7 @@ const authSlice = createSlice({
       // Revoke refresh token server-side (best-effort)
       const refreshToken = localStorage.getItem('admin_refreshToken');
       if (refreshToken) {
-        const baseUrl = (import.meta.env.VITE_API_URL || 'http://localhost:3000/api').replace(/\/api$/, '');
-        fetch(`${baseUrl}/api/auth/logout`, {
+        fetch(`${API_URL}/auth/logout`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ refreshToken }),

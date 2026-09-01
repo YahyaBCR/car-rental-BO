@@ -10,8 +10,7 @@ import axios from 'axios';
 import AdminLayout from '../../components/Layout/AdminLayout';
 import { FaUserShield, FaPlus, FaEdit, FaTrash, FaKey, FaCheck, FaTimes } from 'react-icons/fa';
 import { FlitCarColors } from '../../utils/constants';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+import { API_URL } from '../../config/env';
 
 interface Permission {
   id: string;

@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+import { API_URL } from '../config/env';
 
 const authApi = {
   /**
@@ -8,7 +7,7 @@ const authApi = {
    */
   async getProfile() {
     const token = localStorage.getItem('admin_token');
-    const response = await axios.get(`${API_URL}/api/auth/profile`, {
+    const response = await axios.get(`${API_URL}/auth/profile`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -26,7 +25,7 @@ const authApi = {
     instant_booking?: boolean;
   }) {
     const token = localStorage.getItem('admin_token');
-    const response = await axios.put(`${API_URL}/api/auth/profile`, data, {
+    const response = await axios.put(`${API_URL}/auth/profile`, data, {
       headers: {
         Authorization: `Bearer ${token}`
       }
